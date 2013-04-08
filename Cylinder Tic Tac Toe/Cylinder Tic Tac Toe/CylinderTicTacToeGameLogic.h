@@ -14,7 +14,7 @@
 @property(nonatomic) uint ring;
 @property(nonatomic) uint slot;
 
-+(GameBoardIndex*)forLayer:(uint)layer Ring:(uint)ring Slot:(uint)slot;
++(GameBoardIndex*)indexForLayer:(uint)layer Ring:(uint)ring Slot:(uint)slot;
 
 
 @end
@@ -31,12 +31,16 @@
 
 
 /** An ordered array of history of each player move (GameBoardIndex)
-	Note: playerID will be determined by modulo for number of player 	
+	Note: playerID will be determined by (modulo for number of player)+1
 */
 @property(strong,nonatomic) NSMutableArray * history;
 
-/** Return player id that did make move at index, 
-	return -1 if no body has made the move yet
+
+
+
+
+/** Return player id that did make move at index, playerID start at 1
+	return 0 if no body has made the move yet
 */
 -(int)getPlayerIDatIndex:(GameBoardIndex*)index;
 
@@ -83,7 +87,8 @@
 */
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex*)index;;
 
-
-
+/** Reset game board to initial state
+*/
+-(void)resetGameBoard;
 
 @end
