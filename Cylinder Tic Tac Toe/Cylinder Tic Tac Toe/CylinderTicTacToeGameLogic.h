@@ -25,13 +25,13 @@
 	+Layer (botom up)
 	+Ring (innter -> outer)
 	+Slot (start 12'clock wise)
-	At an index, store a number represent playerID
+	At an index, store a number represent playerID (start at 1, 0 for no player make move here)
 */
 @property(strong,nonatomic) NSMutableArray * board;
 
 
 /** An ordered array of history of each player move (GameBoardIndex)
-	Note: playerID will be determined by (modulo for number of player)+1
+	Note: playerID will be determined by %2+1
 */
 @property(strong,nonatomic) NSMutableArray * history;
 
@@ -87,7 +87,7 @@
 */
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex*)index;;
 
-/** Reset game board to initial state
+/** Reset game board to initial state (full of zero)
 */
 -(void)resetGameBoard;
 

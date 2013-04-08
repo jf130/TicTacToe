@@ -24,15 +24,18 @@
 
 -(id)init{
 	self = [super init];
-	self.board = [[NSMutableArray alloc]initWithCapacity:4];
-	for (int l=0; l<=3; l++) {
-		NSMutableArray * layer = [[NSMutableArray alloc]initWithCapacity:4];
-		for (int r=0; r<=3; r++) {
-			NSMutableArray * ring = [[NSMutableArray alloc]initWithCapacity:8];
-			for(int i=0;i<8;i++)[ring addObject:@(0)];
-			[layer addObject:ring];
+	if (self) {
+		self.board = [[NSMutableArray alloc]initWithCapacity:4];
+		for (int l=0; l<=3; l++) {
+			NSMutableArray * layer = [[NSMutableArray alloc]initWithCapacity:4];
+			for (int r=0; r<=3; r++) {
+				NSMutableArray * ring = [[NSMutableArray alloc]initWithCapacity:8];
+				for(int i=0;i<8;i++)[ring addObject:@(0)];
+				[layer addObject:ring];
+			}
+			[self.board addObject:layer];
 		}
-		[self.board addObject:layer];
+		self.history = [[NSMutableArray alloc]init];
 	}
 	return self;
 }
@@ -43,6 +46,7 @@
 			for(int i=0;i<8;i++)[ring replaceObjectAtIndex:i withObject:@(0)];
 		}
 	}
+	[self.history removeAllObjects];//clear history
 }
 
 -(int)getPlayerIDatIndex:(GameBoardIndex *)index{
@@ -50,10 +54,12 @@
 }
 
 -(int)player:(int)playerID makeMoveAtIndex:(GameBoardIndex *)index{
-	// check valid
-	if ([self getPlayerIDatIndex:index] != 0)return -1;
+	// check valid move ( correct possition ,correct player turn )
+	if ([self getPlayerIDatIndex:index] != 0 || self.history.count%2+1 !=playerID) //i could comment this player turn condition for testing
+		return -1;
 	//make move
 	[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
+	[self.history addObject:index]; //add to history
 	//check for winner
 	if([self checkForWinnerAtIndex:index]==true)return 1;
 	return 0;

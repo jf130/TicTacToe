@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CylinderTicTacToeGameLogic.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	//test game logic (need to disable check player turn condition)
+	CylinderTicTacToeGameLogic * gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
+	NSLog(@"move=%d",[gameLogic player:1 makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:3 Slot:0]]);
+	NSLog(@"move=%d",[gameLogic player:1 makeMoveAtIndex:[GameBoardIndex indexForLayer:1 Ring:2 Slot:1]]);
+	NSLog(@"move=%d",[gameLogic player:1 makeMoveAtIndex:[GameBoardIndex indexForLayer:2 Ring:1 Slot:2]]);
+	NSLog(@"move=%d",[gameLogic player:1 makeMoveAtIndex:[GameBoardIndex indexForLayer:3 Ring:0 Slot:3]]);
+	NSLog(@"move=%d",[gameLogic player:1 makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:0 Slot:2]]);
 }
 
 - (void)didReceiveMemoryWarning
