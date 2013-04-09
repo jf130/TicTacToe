@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol LayerDataSource <NSObject>
+@protocol LayerDataDelegate <NSObject>
 /** return the index color for representing a specific slot
 This should be playerID that made a move at this slot
 current colorSet=[white,red,blue,yellow,green]
 */
 -(int)indexColorForRing:(uint)ring Slot:(uint)slot;
+
+/**	Notify delegate for touch interaction at a particular slot
+Return False if this is not a valid move, other wise return True
+*/
+-(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot;
 
 @end
 
@@ -22,6 +27,6 @@ current colorSet=[white,red,blue,yellow,green]
 
 /** Who responsible for what color
 */
-@property (weak, nonatomic) id <LayerDataSource> datasource;
+@property (weak, nonatomic) id <LayerDataDelegate> delegate;
 
 @end

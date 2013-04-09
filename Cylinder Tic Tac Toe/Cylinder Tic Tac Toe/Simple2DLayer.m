@@ -53,7 +53,7 @@
 			[path stroke];
 			
 			UIColor *fillColor;
-			if(self.datasource != nil)fillColor = [colorSet objectAtIndex:[self.datasource indexColorForRing:r Slot:i]];
+			if(self.delegate != nil)fillColor = [colorSet objectAtIndex:[self.delegate indexColorForRing:r Slot:i]];
 			else{//test color
 				if(i%2==0){
 					fillColor= [UIColor blueColor];
@@ -70,6 +70,10 @@
 		}
 	}
 }
+
+/**
+You should add touch interaction, to find corrdinate then calculating for correct slot, then call for delegate
+*/
 
 
 
