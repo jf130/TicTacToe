@@ -40,12 +40,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)touchesMoved:(NSSet*)toucheswithEvent:(UIEvent*)event {
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
     
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    CGPoint pt = [[touches anyObject] locationInView:self];
+//    CGPoint pt = [[touches anyObject] locationInView:self.view];
+//	NSLog(@"pt=%f,%f",pt.x,pt.y);
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -53,7 +54,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    
+	
 }
 
 @end

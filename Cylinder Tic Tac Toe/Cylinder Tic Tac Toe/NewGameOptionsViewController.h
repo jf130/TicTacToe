@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface NewGameOptionsViewController : UIViewController 
-{
-    IBOutlet UISegmentedControl *segmentedControl;
-}
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlView;
 
 
 @end

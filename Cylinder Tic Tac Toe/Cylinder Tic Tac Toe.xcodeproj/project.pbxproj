@@ -50,6 +50,7 @@
 		B1C756C517115E9B00EF4D46 /* whiteButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A817115E9B00EF4D46 /* whiteButtonHighlight@2x.png */; };
 		B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */; };
 		B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */; };
+		B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -338,6 +339,7 @@
 				B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */,
 				B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */,
 				ACF35C6C1714BF0900B008D3 /* 2DGameViewController.m in Sources */,
+				B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

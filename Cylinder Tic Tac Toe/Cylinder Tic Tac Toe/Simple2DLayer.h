@@ -13,12 +13,12 @@
 This should be playerID that made a move at this slot
 current colorSet=[white,red,blue,yellow,green]
 */
--(int)indexColorForRing:(uint)ring Slot:(uint)slot;
+-(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender;
 
 /**	Notify delegate for touch interaction at a particular slot
 Return False if this is not a valid move, other wise return True
 */
--(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot;
+-(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot sender:(id)sender;
 
 @end
 
