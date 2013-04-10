@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol LayerDataDelegate <NSObject>
+@required
 /** return the index color for representing a specific slot
 This should be playerID that made a move at this slot
 current colorSet=[white,red,blue,yellow,green]

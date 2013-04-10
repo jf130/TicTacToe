@@ -8,6 +8,7 @@
 
 #import "2DGameViewController.h"
 #import "Simple2DLayer.h"
+#import "CylinderTicTacToeGameLogic.h"
 
 
 @interface _DGameViewController ()
@@ -20,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
     }
     return self;
 }
@@ -29,6 +30,7 @@
 {
     [super viewDidLoad];
     Simple2DLayer * layer = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
+    layer.delegate = self;
 	[self.view addSubview:layer];
 
     // Do any additional setup after loading the view from its nib.
@@ -55,6 +57,13 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	
+}
+
+-(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender;
+{
+    GameBoardIndex *index = [GameBoardIndex indexForLayer :0 Ring:ring Slot:slot];
+    int playerColorIndex = [gameLogic getPlayerIDatIndex:index];
+    return playerColorIndex;
 }
 
 @end

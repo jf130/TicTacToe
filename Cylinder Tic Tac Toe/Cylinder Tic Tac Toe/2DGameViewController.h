@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CylinderTicTacToeGameLogic.h"
 
-@interface _DGameViewController : UIViewController
+
+@interface _DGameViewController : UIViewController{
+    CylinderTicTacToeGameLogic *gameLogic;
+    
+}
 
 @end
