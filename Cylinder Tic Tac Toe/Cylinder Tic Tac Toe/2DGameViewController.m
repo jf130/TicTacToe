@@ -61,8 +61,7 @@
 
 -(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
-    GameBoardIndex *index = [GameBoardIndex indexForLayer :0 Ring:ring Slot:slot];
-    int playerColorIndex = [gameLogic getPlayerIDatIndex:index];
+    int playerColorIndex = [gameLogic getPlayerIDatIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
     return playerColorIndex;
 }
 
