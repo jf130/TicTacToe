@@ -76,9 +76,18 @@
 	}
 }
 
-/**
-You should add touch interaction, to find corrdinate then calculating for correct slot, then call for delegate
-*/
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    CGPoint pt = [[touches anyObject] locationInView:self];
+    NSLog(@"pt=%f,%f",pt.x,pt.y);
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+}
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	CGPoint pt = [[touches anyObject] locationInView:self];
@@ -107,5 +116,7 @@ You should add touch interaction, to find corrdinate then calculating for correc
 	NSLog(@"ring=%d",ring);//ring could be = 4 (mean user touch the part that not inside disk)
 	[self.delegate userWantToMakeMoveAtRing:ring Slot:slot sender:self];
 }
+
+
 
 @end

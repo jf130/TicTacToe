@@ -13,8 +13,14 @@
 
 @interface _DGameViewController : UIViewController <LayerDataDelegate>
 {
+    
     CylinderTicTacToeGameLogic *gameLogic;
+    NSMutableArray * layerArray;
     
 }
+
+@property(nonatomic) int currentPlayer;
+@property(nonatomic) int numberOfPlayers;
+
 
 @end

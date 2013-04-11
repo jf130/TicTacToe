@@ -22,6 +22,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
+        self.numberOfPlayers = 2;
+        self.currentPlayer = 1;
+        
     }
     return self;
 }
@@ -29,8 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    layerArray = [[NSMutableArray alloc] initWithCapacity:4];
     Simple2DLayer * layerZero = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
     layerZero.delegate = self;
+    [layerArray addObject:layerZero];
 	[self.view addSubview:layerZero];
 
     // Do any additional setup after loading the view from its nib.
@@ -42,23 +47,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
-    
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    CGPoint pt = [[touches anyObject] locationInView:self.view];
-//	NSLog(@"pt=%f,%f",pt.x,pt.y);
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-	
-}
-
 -(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
     int playerColorIndex = [gameLogic getPlayerIDatIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
@@ -67,7 +55,21 @@
 
 -(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
-    return true;
+    int result = [gameLogic player:_currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
+    if(result == 1){
+        [self redrawBoard:0];
+        return true;
+    }
+    if(result == 0){
+        return true;
+    }
+    
+    return false;
+}
+
+-(void)redrawBoard:(int)layerNum{
+    Simple2DLayer *layer = [layerArray objectAtIndex: layerNum];
+    [layer setNeedsDisplay];
 }
 
 @end
