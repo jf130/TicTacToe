@@ -19,38 +19,22 @@
 		ACF8432D17011DA1001B8DCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432C17011DA1001B8DCB /* Default-568h@2x.png */; };
 		ACF8433017011DA1001B8DCB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432E17011DA1001B8DCB /* MainStoryboard.storyboard */; };
 		ACF8433317011DA1001B8DCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8433217011DA1001B8DCB /* ViewController.m */; };
-		B1C756A917115E9B00EF4D46 /* blackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7568C17115E9B00EF4D46 /* blackButton.png */; };
-		B1C756AA17115E9B00EF4D46 /* blackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7568D17115E9B00EF4D46 /* blackButton@2x.png */; };
-		B1C756AB17115E9B00EF4D46 /* blackButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7568E17115E9B00EF4D46 /* blackButtonHighlight.png */; };
-		B1C756AC17115E9B00EF4D46 /* blackButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7568F17115E9B00EF4D46 /* blackButtonHighlight@2x.png */; };
-		B1C756AD17115E9B00EF4D46 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569017115E9B00EF4D46 /* blueButton.png */; };
-		B1C756AE17115E9B00EF4D46 /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569117115E9B00EF4D46 /* blueButton@2x.png */; };
-		B1C756AF17115E9B00EF4D46 /* blueButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569217115E9B00EF4D46 /* blueButtonHighlight.png */; };
-		B1C756B017115E9B00EF4D46 /* blueButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569317115E9B00EF4D46 /* blueButtonHighlight@2x.png */; };
-		B1C756B117115E9B00EF4D46 /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569417115E9B00EF4D46 /* greenButton.png */; };
-		B1C756B217115E9B00EF4D46 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569517115E9B00EF4D46 /* greenButton@2x.png */; };
-		B1C756B317115E9B00EF4D46 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569617115E9B00EF4D46 /* greenButtonHighlight.png */; };
-		B1C756B417115E9B00EF4D46 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569717115E9B00EF4D46 /* greenButtonHighlight@2x.png */; };
-		B1C756B517115E9B00EF4D46 /* greyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569817115E9B00EF4D46 /* greyButton.png */; };
-		B1C756B617115E9B00EF4D46 /* greyButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569917115E9B00EF4D46 /* greyButton@2x.png */; };
-		B1C756B717115E9B00EF4D46 /* greyButton@2xpng in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569A17115E9B00EF4D46 /* greyButton@2xpng */; };
-		B1C756B817115E9B00EF4D46 /* greyButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569B17115E9B00EF4D46 /* greyButtonHighlight.png */; };
-		B1C756B917115E9B00EF4D46 /* greyButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569C17115E9B00EF4D46 /* greyButtonHighlight@2x.png */; };
-		B1C756BA17115E9B00EF4D46 /* orangeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569D17115E9B00EF4D46 /* orangeButton.png */; };
-		B1C756BB17115E9B00EF4D46 /* orangeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569E17115E9B00EF4D46 /* orangeButton@2x.png */; };
-		B1C756BC17115E9B00EF4D46 /* orangeButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7569F17115E9B00EF4D46 /* orangeButtonHighlight.png */; };
-		B1C756BD17115E9B00EF4D46 /* orangeButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A017115E9B00EF4D46 /* orangeButtonHighlight@2x.png */; };
-		B1C756BE17115E9B00EF4D46 /* tanButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A117115E9B00EF4D46 /* tanButton.png */; };
-		B1C756BF17115E9B00EF4D46 /* tanButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A217115E9B00EF4D46 /* tanButton@2x.png */; };
-		B1C756C017115E9B00EF4D46 /* tanButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A317115E9B00EF4D46 /* tanButtonHighlight.png */; };
-		B1C756C117115E9B00EF4D46 /* tanButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A417115E9B00EF4D46 /* tanButtonHighlight@2x.png */; };
-		B1C756C217115E9B00EF4D46 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A517115E9B00EF4D46 /* whiteButton.png */; };
-		B1C756C317115E9B00EF4D46 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A617115E9B00EF4D46 /* whiteButton@2x.png */; };
-		B1C756C417115E9B00EF4D46 /* whiteButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A717115E9B00EF4D46 /* whiteButtonHighlight.png */; };
-		B1C756C517115E9B00EF4D46 /* whiteButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C756A817115E9B00EF4D46 /* whiteButtonHighlight@2x.png */; };
 		B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */; };
 		B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */; };
 		B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */; };
+		B1C75741171720B900EF4D46 /* blackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75734171720B900EF4D46 /* blackButton.png */; };
+		B1C75742171720B900EF4D46 /* blackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75735171720B900EF4D46 /* blackButton@2x.png */; };
+		B1C75743171720B900EF4D46 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75736171720B900EF4D46 /* blueButton.png */; };
+		B1C75744171720B900EF4D46 /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75737171720B900EF4D46 /* blueButton@2x.png */; };
+		B1C75745171720B900EF4D46 /* cyanButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75738171720B900EF4D46 /* cyanButton.png */; };
+		B1C75746171720B900EF4D46 /* cyanButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75739171720B900EF4D46 /* cyanButton@2x.png */; };
+		B1C75747171720B900EF4D46 /* orangeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573A171720B900EF4D46 /* orangeButton@2x.png */; };
+		B1C75748171720B900EF4D46 /* pinkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573B171720B900EF4D46 /* pinkButton.png */; };
+		B1C75749171720B900EF4D46 /* pinkButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573C171720B900EF4D46 /* pinkButton@2x.png */; };
+		B1C7574A171720B900EF4D46 /* violetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573D171720B900EF4D46 /* violetButton.png */; };
+		B1C7574B171720B900EF4D46 /* violetButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573E171720B900EF4D46 /* violetButton@2x.png */; };
+		B1C7574C171720B900EF4D46 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C7573F171720B900EF4D46 /* whiteButton.png */; };
+		B1C7574D171720B900EF4D46 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C75740171720B900EF4D46 /* whiteButton@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,41 +56,25 @@
 		ACF8432F17011DA1001B8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		ACF8433117011DA1001B8DCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		ACF8433217011DA1001B8DCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B1C7568C17115E9B00EF4D46 /* blackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButton.png; sourceTree = "<group>"; };
-		B1C7568D17115E9B00EF4D46 /* blackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackButton@2x.png"; sourceTree = "<group>"; };
-		B1C7568E17115E9B00EF4D46 /* blackButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButtonHighlight.png; sourceTree = "<group>"; };
-		B1C7568F17115E9B00EF4D46 /* blackButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C7569017115E9B00EF4D46 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
-		B1C7569117115E9B00EF4D46 /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
-		B1C7569217115E9B00EF4D46 /* blueButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButtonHighlight.png; sourceTree = "<group>"; };
-		B1C7569317115E9B00EF4D46 /* blueButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C7569417115E9B00EF4D46 /* greenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButton.png; sourceTree = "<group>"; };
-		B1C7569517115E9B00EF4D46 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenButton@2x.png"; sourceTree = "<group>"; };
-		B1C7569617115E9B00EF4D46 /* greenButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButtonHighlight.png; sourceTree = "<group>"; };
-		B1C7569717115E9B00EF4D46 /* greenButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C7569817115E9B00EF4D46 /* greyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButton.png; sourceTree = "<group>"; };
-		B1C7569917115E9B00EF4D46 /* greyButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButton@2x.png"; sourceTree = "<group>"; };
-		B1C7569A17115E9B00EF4D46 /* greyButton@2xpng */ = {isa = PBXFileReference; lastKnownFileType = file; path = "greyButton@2xpng"; sourceTree = "<group>"; };
-		B1C7569B17115E9B00EF4D46 /* greyButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyButtonHighlight.png; sourceTree = "<group>"; };
-		B1C7569C17115E9B00EF4D46 /* greyButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greyButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C7569D17115E9B00EF4D46 /* orangeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeButton.png; sourceTree = "<group>"; };
-		B1C7569E17115E9B00EF4D46 /* orangeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeButton@2x.png"; sourceTree = "<group>"; };
-		B1C7569F17115E9B00EF4D46 /* orangeButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeButtonHighlight.png; sourceTree = "<group>"; };
-		B1C756A017115E9B00EF4D46 /* orangeButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C756A117115E9B00EF4D46 /* tanButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tanButton.png; sourceTree = "<group>"; };
-		B1C756A217115E9B00EF4D46 /* tanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tanButton@2x.png"; sourceTree = "<group>"; };
-		B1C756A317115E9B00EF4D46 /* tanButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tanButtonHighlight.png; sourceTree = "<group>"; };
-		B1C756A417115E9B00EF4D46 /* tanButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tanButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		B1C756A517115E9B00EF4D46 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
-		B1C756A617115E9B00EF4D46 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
-		B1C756A717115E9B00EF4D46 /* whiteButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButtonHighlight.png; sourceTree = "<group>"; };
-		B1C756A817115E9B00EF4D46 /* whiteButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		B1C756C717115FF900EF4D46 /* CylinderTicTacToeGameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameLogic.h; sourceTree = "<group>"; };
 		B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylinderTicTacToeGameLogic.m; sourceTree = "<group>"; };
 		B1C756CA17145D0F00EF4D46 /* NewGameOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewGameOptionsViewController.h; sourceTree = "<group>"; };
 		B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewGameOptionsViewController.m; sourceTree = "<group>"; };
 		B1C756CC17147B6C00EF4D46 /* Simple2DLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple2DLayer.h; sourceTree = "<group>"; };
 		B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple2DLayer.m; sourceTree = "<group>"; };
+		B1C75734171720B900EF4D46 /* blackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButton.png; sourceTree = "<group>"; };
+		B1C75735171720B900EF4D46 /* blackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackButton@2x.png"; sourceTree = "<group>"; };
+		B1C75736171720B900EF4D46 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		B1C75737171720B900EF4D46 /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
+		B1C75738171720B900EF4D46 /* cyanButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanButton.png; sourceTree = "<group>"; };
+		B1C75739171720B900EF4D46 /* cyanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cyanButton@2x.png"; sourceTree = "<group>"; };
+		B1C7573A171720B900EF4D46 /* orangeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeButton@2x.png"; sourceTree = "<group>"; };
+		B1C7573B171720B900EF4D46 /* pinkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkButton.png; sourceTree = "<group>"; };
+		B1C7573C171720B900EF4D46 /* pinkButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinkButton@2x.png"; sourceTree = "<group>"; };
+		B1C7573D171720B900EF4D46 /* violetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = violetButton.png; sourceTree = "<group>"; };
+		B1C7573E171720B900EF4D46 /* violetButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "violetButton@2x.png"; sourceTree = "<group>"; };
+		B1C7573F171720B900EF4D46 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		B1C75740171720B900EF4D46 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,14 +127,11 @@
 				ACF8432E17011DA1001B8DCB /* MainStoryboard.storyboard */,
 				ACF8433117011DA1001B8DCB /* ViewController.h */,
 				ACF8433217011DA1001B8DCB /* ViewController.m */,
-				B1C756CC17147B6C00EF4D46 /* Simple2DLayer.h */,
-				B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */,
 				B1C756CA17145D0F00EF4D46 /* NewGameOptionsViewController.h */,
 				B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */,
+				B1C757151717098700EF4D46 /* Game View */,
 				B1C7568A17115E8E00EF4D46 /* Resources */,
 				ACF8431D17011DA1001B8DCB /* Supporting Files */,
-				ACF35C691714BF0900B008D3 /* 2DGameViewController.h */,
-				ACF35C6A1714BF0900B008D3 /* 2DGameViewController.m */,
 			);
 			path = "Cylinder Tic Tac Toe";
 			sourceTree = "<group>";
@@ -188,45 +153,9 @@
 		B1C7568A17115E8E00EF4D46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B1C7568B17115E9B00EF4D46 /* simple_buttons */,
+				B1C75733171720B900EF4D46 /* color_buttons */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		B1C7568B17115E9B00EF4D46 /* simple_buttons */ = {
-			isa = PBXGroup;
-			children = (
-				B1C7568C17115E9B00EF4D46 /* blackButton.png */,
-				B1C7568D17115E9B00EF4D46 /* blackButton@2x.png */,
-				B1C7568E17115E9B00EF4D46 /* blackButtonHighlight.png */,
-				B1C7568F17115E9B00EF4D46 /* blackButtonHighlight@2x.png */,
-				B1C7569017115E9B00EF4D46 /* blueButton.png */,
-				B1C7569117115E9B00EF4D46 /* blueButton@2x.png */,
-				B1C7569217115E9B00EF4D46 /* blueButtonHighlight.png */,
-				B1C7569317115E9B00EF4D46 /* blueButtonHighlight@2x.png */,
-				B1C7569417115E9B00EF4D46 /* greenButton.png */,
-				B1C7569517115E9B00EF4D46 /* greenButton@2x.png */,
-				B1C7569617115E9B00EF4D46 /* greenButtonHighlight.png */,
-				B1C7569717115E9B00EF4D46 /* greenButtonHighlight@2x.png */,
-				B1C7569817115E9B00EF4D46 /* greyButton.png */,
-				B1C7569917115E9B00EF4D46 /* greyButton@2x.png */,
-				B1C7569A17115E9B00EF4D46 /* greyButton@2xpng */,
-				B1C7569B17115E9B00EF4D46 /* greyButtonHighlight.png */,
-				B1C7569C17115E9B00EF4D46 /* greyButtonHighlight@2x.png */,
-				B1C7569D17115E9B00EF4D46 /* orangeButton.png */,
-				B1C7569E17115E9B00EF4D46 /* orangeButton@2x.png */,
-				B1C7569F17115E9B00EF4D46 /* orangeButtonHighlight.png */,
-				B1C756A017115E9B00EF4D46 /* orangeButtonHighlight@2x.png */,
-				B1C756A117115E9B00EF4D46 /* tanButton.png */,
-				B1C756A217115E9B00EF4D46 /* tanButton@2x.png */,
-				B1C756A317115E9B00EF4D46 /* tanButtonHighlight.png */,
-				B1C756A417115E9B00EF4D46 /* tanButtonHighlight@2x.png */,
-				B1C756A517115E9B00EF4D46 /* whiteButton.png */,
-				B1C756A617115E9B00EF4D46 /* whiteButton@2x.png */,
-				B1C756A717115E9B00EF4D46 /* whiteButtonHighlight.png */,
-				B1C756A817115E9B00EF4D46 /* whiteButtonHighlight@2x.png */,
-			);
-			path = simple_buttons;
 			sourceTree = "<group>";
 		};
 		B1C756C617115FC100EF4D46 /* Game Logic */ = {
@@ -236,6 +165,37 @@
 				B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */,
 			);
 			name = "Game Logic";
+			sourceTree = "<group>";
+		};
+		B1C757151717098700EF4D46 /* Game View */ = {
+			isa = PBXGroup;
+			children = (
+				B1C756CC17147B6C00EF4D46 /* Simple2DLayer.h */,
+				B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */,
+				ACF35C691714BF0900B008D3 /* 2DGameViewController.h */,
+				ACF35C6A1714BF0900B008D3 /* 2DGameViewController.m */,
+			);
+			name = "Game View";
+			sourceTree = "<group>";
+		};
+		B1C75733171720B900EF4D46 /* color_buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B1C75734171720B900EF4D46 /* blackButton.png */,
+				B1C75735171720B900EF4D46 /* blackButton@2x.png */,
+				B1C75736171720B900EF4D46 /* blueButton.png */,
+				B1C75737171720B900EF4D46 /* blueButton@2x.png */,
+				B1C75738171720B900EF4D46 /* cyanButton.png */,
+				B1C75739171720B900EF4D46 /* cyanButton@2x.png */,
+				B1C7573A171720B900EF4D46 /* orangeButton@2x.png */,
+				B1C7573B171720B900EF4D46 /* pinkButton.png */,
+				B1C7573C171720B900EF4D46 /* pinkButton@2x.png */,
+				B1C7573D171720B900EF4D46 /* violetButton.png */,
+				B1C7573E171720B900EF4D46 /* violetButton@2x.png */,
+				B1C7573F171720B900EF4D46 /* whiteButton.png */,
+				B1C75740171720B900EF4D46 /* whiteButton@2x.png */,
+			);
+			path = color_buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,35 +254,19 @@
 				ACF8432B17011DA1001B8DCB /* Default@2x.png in Resources */,
 				ACF8432D17011DA1001B8DCB /* Default-568h@2x.png in Resources */,
 				ACF8433017011DA1001B8DCB /* MainStoryboard.storyboard in Resources */,
-				B1C756A917115E9B00EF4D46 /* blackButton.png in Resources */,
-				B1C756AA17115E9B00EF4D46 /* blackButton@2x.png in Resources */,
-				B1C756AB17115E9B00EF4D46 /* blackButtonHighlight.png in Resources */,
-				B1C756AC17115E9B00EF4D46 /* blackButtonHighlight@2x.png in Resources */,
-				B1C756AD17115E9B00EF4D46 /* blueButton.png in Resources */,
-				B1C756AE17115E9B00EF4D46 /* blueButton@2x.png in Resources */,
-				B1C756AF17115E9B00EF4D46 /* blueButtonHighlight.png in Resources */,
-				B1C756B017115E9B00EF4D46 /* blueButtonHighlight@2x.png in Resources */,
-				B1C756B117115E9B00EF4D46 /* greenButton.png in Resources */,
-				B1C756B217115E9B00EF4D46 /* greenButton@2x.png in Resources */,
-				B1C756B317115E9B00EF4D46 /* greenButtonHighlight.png in Resources */,
-				B1C756B417115E9B00EF4D46 /* greenButtonHighlight@2x.png in Resources */,
-				B1C756B517115E9B00EF4D46 /* greyButton.png in Resources */,
-				B1C756B617115E9B00EF4D46 /* greyButton@2x.png in Resources */,
-				B1C756B717115E9B00EF4D46 /* greyButton@2xpng in Resources */,
-				B1C756B817115E9B00EF4D46 /* greyButtonHighlight.png in Resources */,
-				B1C756B917115E9B00EF4D46 /* greyButtonHighlight@2x.png in Resources */,
-				B1C756BA17115E9B00EF4D46 /* orangeButton.png in Resources */,
-				B1C756BB17115E9B00EF4D46 /* orangeButton@2x.png in Resources */,
-				B1C756BC17115E9B00EF4D46 /* orangeButtonHighlight.png in Resources */,
-				B1C756BD17115E9B00EF4D46 /* orangeButtonHighlight@2x.png in Resources */,
-				B1C756BE17115E9B00EF4D46 /* tanButton.png in Resources */,
-				B1C756BF17115E9B00EF4D46 /* tanButton@2x.png in Resources */,
-				B1C756C017115E9B00EF4D46 /* tanButtonHighlight.png in Resources */,
-				B1C756C117115E9B00EF4D46 /* tanButtonHighlight@2x.png in Resources */,
-				B1C756C217115E9B00EF4D46 /* whiteButton.png in Resources */,
-				B1C756C317115E9B00EF4D46 /* whiteButton@2x.png in Resources */,
-				B1C756C417115E9B00EF4D46 /* whiteButtonHighlight.png in Resources */,
-				B1C756C517115E9B00EF4D46 /* whiteButtonHighlight@2x.png in Resources */,
+				B1C75741171720B900EF4D46 /* blackButton.png in Resources */,
+				B1C75742171720B900EF4D46 /* blackButton@2x.png in Resources */,
+				B1C75743171720B900EF4D46 /* blueButton.png in Resources */,
+				B1C75744171720B900EF4D46 /* blueButton@2x.png in Resources */,
+				B1C75745171720B900EF4D46 /* cyanButton.png in Resources */,
+				B1C75746171720B900EF4D46 /* cyanButton@2x.png in Resources */,
+				B1C75747171720B900EF4D46 /* orangeButton@2x.png in Resources */,
+				B1C75748171720B900EF4D46 /* pinkButton.png in Resources */,
+				B1C75749171720B900EF4D46 /* pinkButton@2x.png in Resources */,
+				B1C7574A171720B900EF4D46 /* violetButton.png in Resources */,
+				B1C7574B171720B900EF4D46 /* violetButton@2x.png in Resources */,
+				B1C7574C171720B900EF4D46 /* whiteButton.png in Resources */,
+				B1C7574D171720B900EF4D46 /* whiteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

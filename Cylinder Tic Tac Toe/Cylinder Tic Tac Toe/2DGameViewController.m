@@ -10,6 +10,8 @@
 #import "Simple2DLayer.h"
 #import "CylinderTicTacToeGameLogic.h"
 
+#define DegreesToRadians(x) ((x) * M_PI / 180.0)
+#define RadiansToDegrees(x) ((x) * 180 / M_PI)
 
 @interface _DGameViewController ()
 
@@ -36,11 +38,13 @@
 	self.textLabel.text=@"Player 1";
 	
     layerArray = [[NSMutableArray alloc] initWithCapacity:4];
-    Simple2DLayer * layerZero = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
-    layerZero.delegate = self;
-    [layerArray addObject:layerZero];
-	[self.view addSubview:layerZero];
-
+    for (int i=0; i<4; i++) {
+		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 21+132*i, 300, 300)];
+		layerView.delegate = self;
+		[layerArray addObject:layerView];
+		[self.view addSubview:layerView];
+	}
+	
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,20 +54,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(int)layerNumerOfLayerView:(Simple2DLayer*)layerView{
+	return [layerArray indexOfObject:layerView];
+}
+
 -(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
-    int playerColorIndex = [gameLogic getPlayerIDatIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
+    int playerColorIndex = [gameLogic getPlayerIDatIndex:[GameBoardIndex indexForLayer:[self layerNumerOfLayerView:sender] Ring:ring Slot:slot]];
     return playerColorIndex;
 }
 
 -(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
-    int result = [gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
+    int layer=[self layerNumerOfLayerView:sender];
+	int result = [gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]];
     NSLog(@"player=%d , result=%d",self.currentPlayer,result);
-	[self redrawBoard:0];
+	[self redrawBoard:layer];
 	if(result != -1){
         
-		
 		if(result == 1){
 			NSLog(@"Player %d won!",self.currentPlayer);
 			self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
@@ -83,9 +91,36 @@
 }
 
 -(void)redrawBoard:(int)layerNum{
-    Simple2DLayer *layer = [layerArray objectAtIndex: layerNum];
-    [layer setNeedsDisplay];
+    if (layerNum>=0 && layerNum < layerArray.count) {
+		Simple2DLayer *layerView = [layerArray objectAtIndex: layerNum];
+		[layerView setNeedsDisplay];
+	}else{
+		for (Simple2DLayer * layerView in layerArray) [layerView setNeedsDisplay];
+	}
 }
+
+#pragma mark - touch, gesture
+
+- (IBAction)swipeAction:(UISwipeGestureRecognizer *)sender {
+	NSLog(@"Swipe!");
+	CGFloat rotateAngle;
+	if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
+		rotateAngle=90;
+	}
+	if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+		rotateAngle=-90;
+	}
+	
+	for (Simple2DLayer * layerView in layerArray){
+		[UIView beginAnimations:@"rotate" context:nil];
+		[UIView setAnimationDuration:0.8];
+		CGFloat radians = atan2f(layerView.transform.b, layerView.transform.a); 
+		CGFloat currentAngle =  RadiansToDegrees(radians); 
+		layerView.transform = CGAffineTransformMakeRotation(DegreesToRadians(currentAngle+rotateAngle));
+		[UIView commitAnimations];
+	}
+}
+
 
 @end
 
