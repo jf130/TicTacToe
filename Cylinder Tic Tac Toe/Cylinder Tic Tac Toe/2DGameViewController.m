@@ -15,7 +15,7 @@
 
 @end
 
-@implementation _DGameViewController
+@implementation _DGameViewController 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,9 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Simple2DLayer * layer = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
-    layer.delegate = self;
-	[self.view addSubview:layer];
+    Simple2DLayer * layerZero = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
+    layerZero.delegate = self;
+	[self.view addSubview:layerZero];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -59,11 +59,17 @@
 	
 }
 
--(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender;
+-(int)indexColorForRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
     GameBoardIndex *index = [GameBoardIndex indexForLayer :0 Ring:ring Slot:slot];
     int playerColorIndex = [gameLogic getPlayerIDatIndex:index];
     return playerColorIndex;
 }
 
+-(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot sender:(id)sender
+{
+    return true;
+}
+
 @end
+

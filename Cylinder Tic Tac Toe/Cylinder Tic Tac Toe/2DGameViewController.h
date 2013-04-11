@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CylinderTicTacToeGameLogic.h"
+#import "Simple2DLayer.h"
 
 
-@interface _DGameViewController : UIViewController{
+@interface _DGameViewController : UIViewController <LayerDataDelegate>
+{
     CylinderTicTacToeGameLogic *gameLogic;
     
 }
