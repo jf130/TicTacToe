@@ -21,6 +21,7 @@
 
 @property(nonatomic) int currentPlayer;
 @property(nonatomic) int numberOfPlayers;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 
 @end

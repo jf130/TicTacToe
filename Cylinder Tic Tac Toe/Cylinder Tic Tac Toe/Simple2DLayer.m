@@ -91,15 +91,15 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	CGPoint pt = [[touches anyObject] locationInView:self];
-	NSLog(@"pt=%f,%f",pt.x,pt.y);
+//	NSLog(@"pt=%f,%f",pt.x,pt.y);
 	CGRect bounds = self.bounds;
 	CGPoint center = CGPointMake((bounds.size.width/2.0), (bounds.size.height/2.0));
 	CGFloat distance =  sqrtf(powf( (pt.x-center.x) , 2.0) + powf( (pt.y-center.y) , 2.0));
-	NSLog(@"distance=%f",distance);
+//	NSLog(@"distance=%f",distance);
 	CGFloat angle = asinf( (pt.y-center.y)/distance);
 	if(pt.x-center.x < 0)angle= M_PI-angle;
 	if (angle<0)angle+=2*M_PI;
-	NSLog(@"angle=%f",angle);
+//	NSLog(@"angle=%f",angle);
 	//angle start from 0 to 2*M_PI
 	//first slot start at angle 0
 	//identify slot

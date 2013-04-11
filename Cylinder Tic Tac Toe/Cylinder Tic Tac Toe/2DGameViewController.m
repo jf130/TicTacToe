@@ -21,9 +21,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
-        self.numberOfPlayers = 2;
-        self.currentPlayer = 1;
         
     }
     return self;
@@ -32,6 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
+	self.numberOfPlayers = 2;
+	self.currentPlayer = 1;
+	self.textLabel.text=@"Player 1";
+	
     layerArray = [[NSMutableArray alloc] initWithCapacity:4];
     Simple2DLayer * layerZero = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 50, 300, 300)];
     layerZero.delegate = self;
@@ -55,15 +58,27 @@
 
 -(BOOL)userWantToMakeMoveAtRing:(uint)ring Slot:(uint)slot sender:(id)sender
 {
-    int result = [gameLogic player:_currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
-    if(result == 1){
-        [self redrawBoard:0];
-        return true;
-    }
-    if(result == 0){
-        return true;
-    }
-    
+    int result = [gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:0 Ring:ring Slot:slot]];
+    NSLog(@"player=%d , result=%d",self.currentPlayer,result);
+	[self redrawBoard:0];
+	if(result != -1){
+        
+		
+		if(result == 1){
+			NSLog(@"Player %d won!",self.currentPlayer);
+			self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
+		}
+		
+		self.currentPlayer+=1;
+		if (self.currentPlayer>self.numberOfPlayers)self.currentPlayer=1;
+		
+		if(result==0)self.textLabel.text = [NSString stringWithFormat:@"Player %d turn",self.currentPlayer];
+		
+		return true;
+    }else{
+		self.textLabel.text = [NSString stringWithFormat:@"Player %d wrong move!",self.currentPlayer];
+
+	}
     return false;
 }
 
