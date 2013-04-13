@@ -61,13 +61,17 @@
 	[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
 	[self.history addObject:index]; //add to history
 	//check for winner
-	if([self checkForWinnerAtIndex:index]==true)return 1;
+//	if([self checkForWinnerAtIndex:index WithPlayerID:playerID]==true)return 1;
 	return 0;
 }
 
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex *)index{
 	int playerID=[self getPlayerIDatIndex:index];
 	if(playerID<0)return false;
+	return [self checkForWinnerAtIndex:index WithPlayerID:playerID];
+}
+
+-(BOOL)checkForWinnerAtIndex:(GameBoardIndex *)index WithPlayerID:(int)playerID{
 	//Check same layer
 	int count,layer,ring,slot;
 	layer=index.layer;
@@ -217,6 +221,169 @@
 		}
 		
 	return false;
+}
+
+
+-(BOOL)countWinSituationAtIndex:(GameBoardIndex *)index WithPlayerID:(int)playerID{
+	//Check same layer
+	int count,layer,ring,slot;
+	int winSituation=0;
+	layer=index.layer;
+	//check same ring
+	count=0;
+	ring=index.ring;
+	for (int i=1; i<=3; i++) {
+		slot = (index.slot+i)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}
+	for (int i=-1; i>=-3; i--) {
+		slot = (index.slot+i)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}
+	if (count>=3)winSituation++;//result count not include the current one
+	//check same slot
+	count=0;
+	slot=index.slot;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}
+	if (count>=4)winSituation++;
+	//check spiral check 1
+	count=0;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		slot=(index.slot+r-index.ring)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}	
+	if (count>=4)winSituation++;
+	//check spiral check 2
+	count=0;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		slot=(index.slot-r+index.ring)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}	
+	if (count>=4)winSituation++;
+	//check across layer
+	//check same ring check 1
+	count=0;
+	ring=index.ring;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		slot= (index.slot + l-index.layer)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}	
+	if (count>=4)winSituation++;
+	//check same ring check 2
+	count=0;
+	ring=index.ring;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		slot= (index.slot - l+index.layer)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}	
+	if (count>=4)winSituation++;
+	//check same slot situation 1
+	if(index.ring==index.layer){
+		count=0;
+		slot=index.slot;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+	}
+	//check same slot situation 2
+	count=0;
+	slot=index.slot;
+	if(index.ring==3-index.layer){
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+	}
+	
+	//check same ring same slot
+	count=0;
+	ring=index.ring;slot=index.slot;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+		else break;
+	}
+	if (count>=4)winSituation++;
+	
+	//check spiral situation 1
+	if(index.ring==index.layer){
+		//check 1
+		count=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			slot= (index.slot + l-index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+		//check 2
+		count=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			slot= (index.slot - l+index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+	}
+	
+	//check spiral situation 2
+	if(index.ring==3-index.layer){
+		//check 1
+		count=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			slot= (index.slot + l-index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+		//check 2
+		count=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			slot= (index.slot - l+index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID)count+=1;
+			else break;
+		}	
+		if (count>=4)winSituation++;
+	}
+	
+	return winSituation;
+}
+
+-(void)rollBackOneMove{
+	//last move
+	GameBoardIndex * index = [self.history objectAtIndex:self.history.count - 1];
+	//clear move = 0
+	[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(0)];
+	//remove last move
+	[self.history removeLastObject];
 }
 
 @end

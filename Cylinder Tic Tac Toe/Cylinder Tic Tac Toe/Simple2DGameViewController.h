@@ -1,5 +1,5 @@
 //
-//  2DGameViewController.h
+//  Simple2DGameViewController.h
 //  Cylinder Tic Tac Toe
 //
 //  Created by uicsi7 on 4/9/13.
@@ -11,17 +11,12 @@
 #import "Simple2DLayer.h"
 
 
-@interface _DGameViewController : UIViewController <LayerDataDelegate>
-{
-    
-    CylinderTicTacToeGameLogic *gameLogic;
-    NSMutableArray * layerArray;
-    
-}
+@interface Simple2DGameViewController : UIViewController <LayerDataDelegate>
+
 
 @property(nonatomic) int currentPlayer;
 @property(nonatomic) int numberOfPlayers;
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
 
 
 @end

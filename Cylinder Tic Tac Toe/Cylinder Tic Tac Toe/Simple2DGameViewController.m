@@ -1,45 +1,50 @@
 //
-//  2DGameViewController.m
+//  Simple2DGameViewController.m
 //  Cylinder Tic Tac Toe
 //
 //  Created by uicsi7 on 4/9/13.
 //  Copyright (c) 2013 uicsi7. All rights reserved.
 //
 
-#import "2DGameViewController.h"
+#import "Simple2DGameViewController.h"
 #import "Simple2DLayer.h"
 #import "CylinderTicTacToeGameLogic.h"
+#import "CylinderTicTacToeGameAI.h"
 
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 #define RadiansToDegrees(x) ((x) * 180 / M_PI)
 
-@interface _DGameViewController ()
+@interface Simple2DGameViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
-@implementation _DGameViewController 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
+@implementation Simple2DGameViewController {
+    
+    CylinderTicTacToeGameLogic *gameLogic;
+    
+	NSMutableArray * layerArray;
+    
+	CylinderTicTacToeGameAI * testAI;
 }
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
+	testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:3];
+	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
 	self.textLabel.text=@"Player 1";
 	
     layerArray = [[NSMutableArray alloc] initWithCapacity:4];
     for (int i=0; i<4; i++) {
-		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(10, 21+132*i, 300, 300)];
+		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(30, 1+112*i, 250, 250)];
 		layerView.delegate = self;
 		[layerArray addObject:layerView];
 		[self.view addSubview:layerView];
@@ -69,10 +74,14 @@
     int layer=[self layerNumerOfLayerView:sender];
 	int result = [gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]];
     NSLog(@"player=%d , result=%d",self.currentPlayer,result);
+	[testAI copyGameState];
+	NSLog(@"possibleMove=%d , heurestic=%.2f",[testAI possibleMovesForCurrentState].count,[testAI heuristicValueOfCurrentState]);
+	
+		
 	[self redrawBoard:layer];
 	if(result != -1){
         
-		if(result == 1){
+		if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
 			NSLog(@"Player %d won!",self.currentPlayer);
 			self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
 		}
@@ -81,6 +90,28 @@
 		if (self.currentPlayer>self.numberOfPlayers)self.currentPlayer=1;
 		
 		if(result==0)self.textLabel.text = [NSString stringWithFormat:@"Player %d turn",self.currentPlayer];
+		
+		//AI part to test
+		if (self.currentPlayer==2) {//AI move
+			self.textLabel.text = @"Waiting for AI";
+			[self.view setNeedsDisplay];
+			GameBoardIndex * bestMove = [testAI bestPossibleMove];
+			NSLog(@"bestMove %@=(%d,%d,%d)",bestMove,bestMove.layer,bestMove.ring,bestMove.slot);
+			if (bestMove!=Nil) {
+				[gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:bestMove.layer Ring:bestMove.ring Slot:bestMove.slot]];
+				[self redrawBoard:bestMove.layer];
+				if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
+					NSLog(@"Bot won!");
+					self.textLabel.text = @"Bot won!";
+				}else
+					self.textLabel.text = @"Player 1 turn";
+				self.currentPlayer=self.currentPlayer%2+1;
+			}else{
+				NSLog(@"Bot give up!");
+				self.textLabel.text = @"Bot give up!";
+			}
+			
+		}
 		
 		return true;
     }else{
@@ -102,7 +133,7 @@
 #pragma mark - touch, gesture
 
 - (IBAction)swipeAction:(UISwipeGestureRecognizer *)sender {
-	NSLog(@"Swipe!");
+//	NSLog(@"Swipe!");
 	CGFloat rotateAngle;
 	if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
 		rotateAngle=90;

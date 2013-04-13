@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ACF35C6C1714BF0900B008D3 /* 2DGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF35C6A1714BF0900B008D3 /* 2DGameViewController.m */; };
+		ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */; };
 		ACF8431717011DA1001B8DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431617011DA1001B8DCB /* UIKit.framework */; };
 		ACF8431917011DA1001B8DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431817011DA1001B8DCB /* Foundation.framework */; };
 		ACF8431B17011DA1001B8DCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431A17011DA1001B8DCB /* CoreGraphics.framework */; };
@@ -19,6 +19,7 @@
 		ACF8432D17011DA1001B8DCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432C17011DA1001B8DCB /* Default-568h@2x.png */; };
 		ACF8433017011DA1001B8DCB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432E17011DA1001B8DCB /* MainStoryboard.storyboard */; };
 		ACF8433317011DA1001B8DCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8433217011DA1001B8DCB /* ViewController.m */; };
+		B1BFB433171941D900FFB502 /* CylinderTicTacToeGameAI.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */; };
 		B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */; };
 		B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */; };
 		B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */; };
@@ -45,8 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ACF35C691714BF0900B008D3 /* 2DGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DGameViewController.h; sourceTree = "<group>"; };
-		ACF35C6A1714BF0900B008D3 /* 2DGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DGameViewController.m; sourceTree = "<group>"; };
+		ACF35C691714BF0900B008D3 /* Simple2DGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple2DGameViewController.h; sourceTree = "<group>"; };
+		ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple2DGameViewController.m; sourceTree = "<group>"; };
 		ACF8431217011DA1001B8DCB /* Cylinder Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cylinder Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF8431617011DA1001B8DCB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ACF8431817011DA1001B8DCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +64,8 @@
 		ACF8432F17011DA1001B8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		ACF8433117011DA1001B8DCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		ACF8433217011DA1001B8DCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B1BFB431171941D900FFB502 /* CylinderTicTacToeGameAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameAI.h; sourceTree = "<group>"; };
+		B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylinderTicTacToeGameAI.m; sourceTree = "<group>"; };
 		B1C756C717115FF900EF4D46 /* CylinderTicTacToeGameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameLogic.h; sourceTree = "<group>"; };
 		B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylinderTicTacToeGameLogic.m; sourceTree = "<group>"; };
 		B1C756CA17145D0F00EF4D46 /* NewGameOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewGameOptionsViewController.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 			children = (
 				B1C756C717115FF900EF4D46 /* CylinderTicTacToeGameLogic.h */,
 				B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */,
+				B1BFB431171941D900FFB502 /* CylinderTicTacToeGameAI.h */,
+				B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */,
 			);
 			name = "Game Logic";
 			sourceTree = "<group>";
@@ -186,8 +191,8 @@
 			children = (
 				B1C756CC17147B6C00EF4D46 /* Simple2DLayer.h */,
 				B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */,
-				ACF35C691714BF0900B008D3 /* 2DGameViewController.h */,
-				ACF35C6A1714BF0900B008D3 /* 2DGameViewController.m */,
+				ACF35C691714BF0900B008D3 /* Simple2DGameViewController.h */,
+				ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */,
 			);
 			name = "Game View";
 			sourceTree = "<group>";
@@ -310,8 +315,9 @@
 				ACF8433317011DA1001B8DCB /* ViewController.m in Sources */,
 				B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */,
 				B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */,
-				ACF35C6C1714BF0900B008D3 /* 2DGameViewController.m in Sources */,
+				ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */,
 				B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */,
+				B1BFB433171941D900FFB502 /* CylinderTicTacToeGameAI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

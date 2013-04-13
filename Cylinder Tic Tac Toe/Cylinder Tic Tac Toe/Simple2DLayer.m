@@ -23,7 +23,7 @@
         // Initialization code
 		self.backgroundColor=[UIColor clearColor];
 		colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor]];
-    	radiusSet=@[@(0.35),@(0.58),@(0.8),@(1.0)];
+    	radiusSet=@[@(0.36),@(0.58),@(0.8),@(1.0)];
 	}
     return self;
 }
@@ -129,7 +129,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     CGPoint pt = [[touches anyObject] locationInView:self];
-    NSLog(@"pt=%f,%f",pt.x,pt.y);
+//    NSLog(@"pt=%f,%f",pt.x,pt.y);
 	currentSlot=[self identifySlotForPoint:pt];
 	currentRing=[self identifyRingForPoint:pt];
 }
@@ -143,8 +143,8 @@
 	int slot=[self identifySlotForPoint:pt];
 	int ring=[self identifyRingForPoint:pt];
 	if (slot==currentSlot || ring==currentRing) {
-		NSLog(@"slot=%d",slot);
-		NSLog(@"ring=%d",ring);//ring could be = 4 (mean user touch the part that not inside disk)
+		NSLog(@"ring=%d,slot=%d",ring,slot);
+		//rare: ring could be = 4 (mean user touch the part that not inside disk)
 		if (ring<4) {
 			[self.delegate userWantToMakeMoveAtRing:ring Slot:slot sender:self];
 		}

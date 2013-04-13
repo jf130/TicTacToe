@@ -87,8 +87,14 @@
 */
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex*)index;;
 
+-(BOOL)checkForWinnerAtIndex:(GameBoardIndex *)index WithPlayerID:(int)playerID;
+
 /** Reset game board to initial state (full of zero)
 */
 -(void)resetGameBoard;
+
+/** Roll back one move
+*/
+-(void)rollBackOneMove;
 
 @end
