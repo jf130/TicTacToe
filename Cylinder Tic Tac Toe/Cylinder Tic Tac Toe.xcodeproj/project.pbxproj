@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ACAD19BD17256793002B522B /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAD19BC17256793002B522B /* Title.png */; };
 		ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */; };
 		ACF8431717011DA1001B8DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431617011DA1001B8DCB /* UIKit.framework */; };
 		ACF8431917011DA1001B8DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431817011DA1001B8DCB /* Foundation.framework */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ACAD19BC17256793002B522B /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Title.png; path = color_buttons/Title.png; sourceTree = "<group>"; };
 		ACF35C691714BF0900B008D3 /* Simple2DGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple2DGameViewController.h; sourceTree = "<group>"; };
 		ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple2DGameViewController.m; sourceTree = "<group>"; };
 		ACF8431217011DA1001B8DCB /* Cylinder Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cylinder Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ACAD198F17256663002B522B /* game_images */ = {
+			isa = PBXGroup;
+			children = (
+				ACAD19BC17256793002B522B /* Title.png */,
+			);
+			name = game_images;
+			sourceTree = "<group>";
+		};
 		ACF8430717011DA1001B8DCB = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 		B1C7568A17115E8E00EF4D46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACAD198F17256663002B522B /* game_images */,
 				B1C7574E1717260C00EF4D46 /* color_buttons */,
 			);
 			name = Resources;
@@ -300,6 +311,7 @@
 				B1C757741717260C00EF4D46 /* violetButton@2x.png in Resources */,
 				B1C757751717260C00EF4D46 /* whiteButton.png in Resources */,
 				B1C757761717260C00EF4D46 /* whiteButton@2x.png in Resources */,
+				ACAD19BD17256793002B522B /* Title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

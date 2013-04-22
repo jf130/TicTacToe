@@ -12,6 +12,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 
 @implementation ViewController
@@ -19,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _imageView.image = [UIImage imageNamed:@"Title.png"];
 	// Do any additional setup after loading the view, typically from a nib.
 	//test game logic (need to disable check player turn condition)
 //	CylinderTicTacToeGameLogic * gameLogic = [[CylinderTicTacToeGameLogic alloc]init];

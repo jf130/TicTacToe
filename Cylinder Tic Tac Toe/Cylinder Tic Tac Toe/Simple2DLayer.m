@@ -23,7 +23,7 @@
         // Initialization code
 		self.backgroundColor=[UIColor clearColor];
 		colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor]];
-    	radiusSet=@[@(0.36),@(0.58),@(0.8),@(1.0)];
+    	radiusSet=@[@(0.3),@(0.5),@(0.7),@(0.9)];
 	}
     return self;
 }
