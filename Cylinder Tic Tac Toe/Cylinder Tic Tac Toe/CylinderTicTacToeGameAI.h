@@ -29,7 +29,7 @@
 I tried a simple heuristic but it is terrible unless there are few slot left in current state
 
 */
--(float)heuristicValueOfCurrentState;
+-(float)heuristicValueOfCurrentStateForPlayerID:(int)playerID;
 
 /** Return the best move found by AI
 */

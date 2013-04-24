@@ -77,71 +77,189 @@
 	return possibleMoveList;
 }
 
--(float)heuristicValueOfCurrentState{
-	int lastPlayerID=[self getPlayerIDatIndex:self.history.lastObject];
-	//NSLog(@"lastPlayerID=%d",lastPlayerID);
+-(float)heuristicValueOfCurrentStateForPlayerID:(int)playerID{
 	
-	int sum=[self heuristicValueOfCurrentStateForPlayerID:lastPlayerID]-[self heuristicValueOfCurrentStateForPlayerID:(lastPlayerID+1)%2];
-	return @(sum).floatValue;///(4*4*8); 
-}
-
-
--(float)heuristic2ForPlayerID:(int)playerID{
-	//Count number of win situation;
-	int numberOfWinSituation=0;
+	float sum=0;
 	for (GameBoardIndex * index in self.history) {
-//		int playerID = [self getPlayerIDatIndex:index];
-		
+		int indexPlayerID=[self getPlayerIDatIndex:index];
+		if (indexPlayerID==0)NSLog(@"WTF");
+		float heuristicValue = [self heuristicValueOfCurrentStateForIndex:index WithPlayerID:indexPlayerID];
+		if(playerID==indexPlayerID)sum+=heuristicValue;
+		else sum-=heuristicValue;
 	}
 	
-	return numberOfWinSituation;
+	return sum;///(4*4*8); 
 }
 
--(int)heuristicValueOfCurrentStateForPlayerID:(int)lastPlayerID{
-	//Turn all 0  possible possition to lastPlayerID
-//	GameBoardIndex * lastIndex=[self.history objectAtIndex:self.history.count-1];
-//	if ([self getPlayerIDatIndex:lastIndex] != lastPlayerID)lastIndex=[self.history objectAtIndex:self.history.count-2];
+
+
+-(float)heuristicValueOfCurrentStateForIndex:(GameBoardIndex *)index WithPlayerID:(int)playerID{
+	//Check same layer
+	int count,count2,layer,ring,slot;
+	int point=0;
+	layer=index.layer;
+	//check same ring
+	count=count2=0;
+	ring=index.ring;
+	for (int i=1; i<=3; i++) {
+		slot = (index.slot+i)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}
+	for (int i=-1; i>=-3; i--) {
+		slot = (index.slot+i)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}
+	if (count>=3)point+=1+count2;//result count not include the current one
+	if (count>=4 && count2>=2)point+=count2*count2*count;//sure win situation
 	
-	for (int l=0;l<4;l++) {
-		NSMutableArray * layer = [self.board objectAtIndex:l];
-		for (int r=0;r<4;r++) {
-			NSMutableArray * ring = [layer objectAtIndex:r];
-			for(int i=0;i<8;i++){
-				if ([[ring objectAtIndex:i] intValue] == 0) {
-					[ring replaceObjectAtIndex:i withObject:@(lastPlayerID)];
-				}
-			}
-		}
+	//check same slot
+	count=count2=0;
+	slot=index.slot;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}
+	if (count>=4)point+=count2;
+	//check spiral check 1
+	count=count2=0;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		slot=(index.slot+r-index.ring)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}	
+	if (count>=4)point+=count2;;
+	//check spiral check 2
+	count=count2=0;
+	for (int r=0; r<=3; r++) {
+		ring=r;
+		slot=(index.slot-r+index.ring)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}	
+	if (count>=4)point+=count2;
+	//check across layer
+	//check same ring check 1
+	count=count2=0;
+	ring=index.ring;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		slot= (index.slot + l-index.layer)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}	
+	if (count>=4)point+=count2;
+	//check same ring check 2
+	count=count2=0;
+	ring=index.ring;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		slot= (index.slot - l+index.layer)%8;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}	
+	if (count>=4)point+=count2;
+	//check same slot situation 1
+	if(index.ring==index.layer){
+		count=count2=0;
+		slot=index.slot;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
+	}
+	//check same slot situation 2
+	count=count2=0;
+	slot=index.slot;
+	if(index.ring==3-index.layer){
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
 	}
 	
+	//check same ring same slot
+	count=count2=0;
+	ring=index.ring;slot=index.slot;
+	for (int l=0; l<=3; l++) {
+		layer=l;
+		if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+		else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+		else break;
+	}
+	if (count>=4)point+=count2;
 	
-	//Count number of win situation;
-	int numberOfWinSituation=0;
-	for (int l=0;l<4;l++) {
-		for (int r=0;r<4;r++) {
-			for(int i=0;i<8;i++){
-				GameBoardIndex * currentIndex = [GameBoardIndex indexForLayer:l Ring:r Slot:i];
-				if ([self getPlayerIDatIndex:currentIndex]==lastPlayerID
-				&& [self checkForWinnerAtIndex:currentIndex WithPlayerID:lastPlayerID]==1){
-					numberOfWinSituation+=1;
-				}
-			}
-		}
+	//check spiral situation 1
+	if(index.ring==index.layer){
+		//check 1
+		count=count2=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			slot= (index.slot + l-index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
+		//check 2
+		count=count2=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=l;
+			slot= (index.slot - l+index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
 	}
 	
-	//numberOfWinSituation/=4;
-	//recover board using history
-	for (NSMutableArray * layer in self.board) {
-		for (NSMutableArray * ring in layer) {
-			for(int i=0;i<8;i++)[ring replaceObjectAtIndex:i withObject:@(0)];
-		}
-	}
-	for(int i=0;i<self.history.count;i++){
-		GameBoardIndex * index = [self.history objectAtIndex:i];
-		[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(i%2+1)];
+	//check spiral situation 2
+	if(index.ring==3-index.layer){
+		//check 1
+		count=count2=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			slot= (index.slot + l-index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
+		//check 2
+		count=count2=0;
+		for (int l=0; l<=3; l++) {
+			layer=l;
+			ring=3-l;
+			slot= (index.slot - l+index.layer)%8;
+			if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==playerID){count+=1;count2+=1;}
+			else if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]]==0)count+=1;
+			else break;
+		}	
+		if (count>=4)point+=count2;
 	}
 	
-	return numberOfWinSituation;
+	return point;
 }
 
 -(float)minimaxSearchForDept:(int)depth{
@@ -186,7 +304,7 @@ return β
 		if(botID==lastPlayerID)return INFINITY;
 		else return -INFINITY;
 	}
-	if(depth <= 0)return 0; //I've implement heurestic but it is terible so just return 0
+	if(depth <= 0)return [self heuristicValueOfCurrentStateForPlayerID:botID]; //I've implement heurestic but it is terible so just return 0
 	int currentPlayerID=lastPlayerID%2+1;
 	if (lastPlayerID!=botID) {
 		for(GameBoardIndex * index in [self possibleMovesForCurrentState]){
@@ -224,6 +342,8 @@ return β
 	int lastPlayerID=[self getPlayerIDatIndex:self.history.lastObject];
 	int currentPlayerID=lastPlayerID%2+1;
 	NSLog(@"botID=%d",currentPlayerID);
+	NSLog(@"player heuristic=%.2f",[self heuristicValueOfCurrentStateForPlayerID:lastPlayerID]);
+	
 	[self alphaBetaPruningWithDepth:depthLevelOfSearch Alpha:-INFINITY Beta:INFINITY botPlayer:currentPlayerID];
 	return bestMove;
 }

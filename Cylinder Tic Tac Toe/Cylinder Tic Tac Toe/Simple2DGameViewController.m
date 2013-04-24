@@ -36,7 +36,7 @@
     [super viewDidLoad];
 	
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
-	testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:3];
+	testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
 	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
@@ -75,8 +75,6 @@
 	int result = [gameLogic player:self.currentPlayer makeMoveAtIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]];
     NSLog(@"player=%d , result=%d",self.currentPlayer,result);
 	[testAI copyGameState];
-	NSLog(@"possibleMove=%d , heurestic=%.2f",[testAI possibleMovesForCurrentState].count,[testAI heuristicValueOfCurrentState]);
-	
 		
 	[self redrawBoard:layer];
 	if(result != -1){
