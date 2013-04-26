@@ -16,7 +16,7 @@
 
 @property(nonatomic) int currentPlayer;
 @property(nonatomic) int numberOfPlayers;
-
+@property(nonatomic) BOOL vsAI;
 
 
 @end

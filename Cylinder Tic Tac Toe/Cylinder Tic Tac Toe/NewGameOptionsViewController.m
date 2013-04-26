@@ -7,6 +7,7 @@
 //
 
 #import "NewGameOptionsViewController.h"
+#import "Simple2DGameViewController.h"
 
 @interface NewGameOptionsViewController ()
 
@@ -28,6 +29,17 @@
 
 - (void)viewDidUnload{
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+	if ([segue.identifier isEqualToString:@"gotoGameVC"]) {
+	  Simple2DGameViewController * destVC= segue.destinationViewController;
+		if (self.segmentedControlView.selectedSegmentIndex==1)destVC.vsAI=true;
+	}
+	
+}
+-(IBAction)returnToNewGameOptionVC:(UIStoryboardSegue*)segue{
+	
 }
 
 @end

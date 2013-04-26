@@ -11,6 +11,8 @@
 #import "CylinderTicTacToeGameLogic.h"
 #import "CylinderTicTacToeGameAI.h"
 
+#import "WinScenceVC.h"
+
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 #define RadiansToDegrees(x) ((x) * 180 / M_PI)
 
@@ -27,6 +29,8 @@
 	NSMutableArray * layerArray;
     
 	CylinderTicTacToeGameAI * testAI;
+	
+	NSString * whoWin;
 }
 
 
@@ -36,7 +40,7 @@
     [super viewDidLoad];
 	
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
-	testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
+	if(self.vsAI)testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
 	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
@@ -82,6 +86,8 @@
 		if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
 			NSLog(@"Player %d won!",self.currentPlayer);
 			self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
+			whoWin = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
+			[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 		}
 		
 		self.currentPlayer+=1;
@@ -90,7 +96,7 @@
 		if(result==0)self.textLabel.text = [NSString stringWithFormat:@"Player %d turn",self.currentPlayer];
 		
 		//AI part to test
-		if (self.currentPlayer==2) {//AI move
+		if (self.currentPlayer==2 && self.vsAI) {//AI move
 			self.textLabel.text = @"Waiting for AI";
 			[self.view setNeedsDisplay];
 			GameBoardIndex * bestMove = [testAI bestPossibleMove];
@@ -101,12 +107,16 @@
 				if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
 					NSLog(@"Bot won!");
 					self.textLabel.text = @"Bot won!";
+					whoWin = @"Bot won!";
+					[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 				}else
 					self.textLabel.text = @"Player 1 turn";
 				self.currentPlayer=self.currentPlayer%2+1;
 			}else{
 				NSLog(@"Bot give up!");
 				self.textLabel.text = @"Bot give up!";
+				whoWin = @"You won! Bot give up!";
+				[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 			}
 			
 		}
@@ -149,7 +159,15 @@
 		[UIView commitAnimations];
 	}
 }
+#pragma mark - segue
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+	if ([segue.identifier isEqualToString:@"gotoWinScenceVC"]) {
+		WinScenceVC * destVC = segue.destinationViewController;
+		NSLog(@"whoWin=%@",whoWin);
+		destVC.whoWin = whoWin;
+	}
+}
 
 @end
 

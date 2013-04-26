@@ -20,6 +20,7 @@
 		ACF8432D17011DA1001B8DCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432C17011DA1001B8DCB /* Default-568h@2x.png */; };
 		ACF8433017011DA1001B8DCB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACF8432E17011DA1001B8DCB /* MainStoryboard.storyboard */; };
 		ACF8433317011DA1001B8DCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF8433217011DA1001B8DCB /* ViewController.m */; };
+		B19F1C51172A8F6D00C42142 /* WinScenceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B19F1C50172A8F6D00C42142 /* WinScenceVC.m */; };
 		B1BFB433171941D900FFB502 /* CylinderTicTacToeGameAI.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */; };
 		B1C756C917115FF900EF4D46 /* CylinderTicTacToeGameLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756C817115FF900EF4D46 /* CylinderTicTacToeGameLogic.m */; };
 		B1C756CE17147B6C00EF4D46 /* Simple2DLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C756CD17147B6C00EF4D46 /* Simple2DLayer.m */; };
@@ -66,6 +67,8 @@
 		ACF8432F17011DA1001B8DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		ACF8433117011DA1001B8DCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		ACF8433217011DA1001B8DCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B19F1C4F172A8F6D00C42142 /* WinScenceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScenceVC.h; sourceTree = "<group>"; };
+		B19F1C50172A8F6D00C42142 /* WinScenceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScenceVC.m; sourceTree = "<group>"; };
 		B1BFB431171941D900FFB502 /* CylinderTicTacToeGameAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameAI.h; sourceTree = "<group>"; };
 		B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylinderTicTacToeGameAI.m; sourceTree = "<group>"; };
 		B1C756C717115FF900EF4D46 /* CylinderTicTacToeGameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameLogic.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				ACF8433217011DA1001B8DCB /* ViewController.m */,
 				B1C756CA17145D0F00EF4D46 /* NewGameOptionsViewController.h */,
 				B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */,
+				B19F1C4F172A8F6D00C42142 /* WinScenceVC.h */,
+				B19F1C50172A8F6D00C42142 /* WinScenceVC.m */,
 				B1C757151717098700EF4D46 /* Game View */,
 				B1C7568A17115E8E00EF4D46 /* Resources */,
 				ACF8431D17011DA1001B8DCB /* Supporting Files */,
@@ -330,6 +335,7 @@
 				ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */,
 				B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */,
 				B1BFB433171941D900FFB502 /* CylinderTicTacToeGameAI.m in Sources */,
+				B19F1C51172A8F6D00C42142 /* WinScenceVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
