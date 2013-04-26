@@ -115,7 +115,7 @@
 			}else{
 				NSLog(@"Bot give up!");
 				self.textLabel.text = @"Bot give up!";
-				whoWin = @"You won! Bot give up!";
+				whoWin = @"You won!\nBot give up!";
 				[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 			}
 			
