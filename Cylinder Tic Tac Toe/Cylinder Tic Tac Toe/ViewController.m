@@ -13,6 +13,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 
 @end
 
@@ -22,6 +23,7 @@
 {
     [super viewDidLoad];
     _imageView.image = [UIImage imageNamed:@"Title.png"];
+    _imageView2.image = [UIImage imageNamed:@"Menu.png"];
 	// Do any additional setup after loading the view, typically from a nib.
 	//test game logic (need to disable check player turn condition)
 //	CylinderTicTacToeGameLogic * gameLogic = [[CylinderTicTacToeGameLogic alloc]init];

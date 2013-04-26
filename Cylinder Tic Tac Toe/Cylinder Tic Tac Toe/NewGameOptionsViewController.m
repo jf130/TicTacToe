@@ -11,6 +11,8 @@
 
 @interface NewGameOptionsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 
 @implementation NewGameOptionsViewController
