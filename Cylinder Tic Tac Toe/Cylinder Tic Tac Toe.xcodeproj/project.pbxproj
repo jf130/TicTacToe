@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC3DD7DC172AE2DC00C8931C /* Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = AC3DD7DB172AE2DC00C8931C /* Menu.png */; };
+		AC3DD7F21730227D00C8931C /* HowToPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3DD7F11730227D00C8931C /* HowToPlayViewController.m */; };
+		AC3DD7F51730232300C8931C /* howToPlay.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AC3DD7F41730232300C8931C /* howToPlay.pdf */; };
 		ACAD19BD17256793002B522B /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAD19BC17256793002B522B /* Title.png */; };
 		ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */; };
 		ACF8431717011DA1001B8DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431617011DA1001B8DCB /* UIKit.framework */; };
@@ -50,6 +52,9 @@
 
 /* Begin PBXFileReference section */
 		AC3DD7DB172AE2DC00C8931C /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menu.png; path = color_buttons/Menu.png; sourceTree = "<group>"; };
+		AC3DD7F01730227D00C8931C /* HowToPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToPlayViewController.h; sourceTree = "<group>"; };
+		AC3DD7F11730227D00C8931C /* HowToPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToPlayViewController.m; sourceTree = "<group>"; };
+		AC3DD7F41730232300C8931C /* howToPlay.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = howToPlay.pdf; sourceTree = "<group>"; };
 		ACAD19BC17256793002B522B /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Title.png; path = color_buttons/Title.png; sourceTree = "<group>"; };
 		ACF35C691714BF0900B008D3 /* Simple2DGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple2DGameViewController.h; sourceTree = "<group>"; };
 		ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple2DGameViewController.m; sourceTree = "<group>"; };
@@ -115,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC3DD7F3173022FA00C8931C /* pdfs */ = {
+			isa = PBXGroup;
+			children = (
+				AC3DD7F41730232300C8931C /* howToPlay.pdf */,
+			);
+			name = pdfs;
+			sourceTree = "<group>";
+		};
 		ACAD198F17256663002B522B /* game_images */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,8 @@
 				B1C756CB17145D1000EF4D46 /* NewGameOptionsViewController.m */,
 				B19F1C4F172A8F6D00C42142 /* WinScenceVC.h */,
 				B19F1C50172A8F6D00C42142 /* WinScenceVC.m */,
+				AC3DD7F01730227D00C8931C /* HowToPlayViewController.h */,
+				AC3DD7F11730227D00C8931C /* HowToPlayViewController.m */,
 				B1C757151717098700EF4D46 /* Game View */,
 				B1C7568A17115E8E00EF4D46 /* Resources */,
 				ACF8431D17011DA1001B8DCB /* Supporting Files */,
@@ -188,6 +203,7 @@
 		B1C7568A17115E8E00EF4D46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AC3DD7F3173022FA00C8931C /* pdfs */,
 				ACAD198F17256663002B522B /* game_images */,
 				B1C7574E1717260C00EF4D46 /* color_buttons */,
 			);
@@ -321,6 +337,7 @@
 				B1C757761717260C00EF4D46 /* whiteButton@2x.png in Resources */,
 				ACAD19BD17256793002B522B /* Title.png in Resources */,
 				AC3DD7DC172AE2DC00C8931C /* Menu.png in Resources */,
+				AC3DD7F51730232300C8931C /* howToPlay.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +357,7 @@
 				B1C756CF1715B3A300EF4D46 /* NewGameOptionsViewController.m in Sources */,
 				B1BFB433171941D900FFB502 /* CylinderTicTacToeGameAI.m in Sources */,
 				B19F1C51172A8F6D00C42142 /* WinScenceVC.m in Sources */,
+				AC3DD7F21730227D00C8931C /* HowToPlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

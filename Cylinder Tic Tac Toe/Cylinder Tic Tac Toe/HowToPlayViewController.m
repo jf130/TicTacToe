@@ -9,24 +9,21 @@
 #import "HowToPlayViewController.h"
 
 @interface HowToPlayViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
 @implementation HowToPlayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"howToPlay" ofType:@"pdf"];
+    NSURL *targetURL = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+    [self.webView loadRequest:request];
+  
 }
 
 - (void)didReceiveMemoryWarning
