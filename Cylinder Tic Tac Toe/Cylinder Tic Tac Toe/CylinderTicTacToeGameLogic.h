@@ -37,8 +37,6 @@
 
 
 
-
-
 /** Return player id that did make move at index, playerID start at 1
 	return 0 if no body has made the move yet
 */
@@ -47,7 +45,7 @@
 
 /** Return 0 if player make a valid move, -1 if not, and 1 if the player did this move win.
 */
--(int)player:(int)playerID makeMoveAtIndex:(GameBoardIndex*)index;
+-(int)player:(int)playerID isSlotSelected:(BOOL)slotSelected isAI:(BOOL)ai makeMoveAtIndex:(GameBoardIndex*)index;
 
 /** Test this index for winner, (return True if there is)
 	+Check same Layer: layer=index.layer
@@ -85,13 +83,17 @@
 				  and slot= (index.slot - l+index.layer)%8
 			if all same, there is a winner
 */
--(BOOL)checkForWinnerAtIndex:(GameBoardIndex*)index;;
+-(BOOL)checkForWinnerAtIndex:(GameBoardIndex*)index;
 
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex *)index WithPlayerID:(int)playerID;
 
 /** Reset game board to initial state (full of zero)
 */
 -(void)resetGameBoard;
+
+-(void)removeSelectedSlotInLayer:(int)layer Ring:(int)ring Slot:(int)slot;
+
+-(void)removeSelectedSlotsInOtherLayers:(int)layerNum;
 
 /** Roll back one move
 */

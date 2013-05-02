@@ -17,6 +17,7 @@
 @property(nonatomic) int currentPlayer;
 @property(nonatomic) int numberOfPlayers;
 @property(nonatomic) BOOL vsAI;
-
+@property(nonatomic) BOOL isSlotSelected;
+@property(nonatomic) uint selectedLayer,selectedRing,selectedSlot;
 
 @end

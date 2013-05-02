@@ -29,5 +29,7 @@ Return False if this is not a valid move, other wise return True
 /** Who responsible for what color
 */
 @property (weak, nonatomic) id <LayerDataDelegate> delegate;
+@property(nonatomic) int layerNumber;
+
 
 @end

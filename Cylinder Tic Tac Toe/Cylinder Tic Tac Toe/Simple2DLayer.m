@@ -22,7 +22,7 @@
     if (self) {
         // Initialization code
 		self.backgroundColor=[UIColor clearColor];
-		colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor]];
+		colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor], [UIColor grayColor]];
     	radiusSet=@[@(0.3),@(0.5),@(0.7),@(0.9)];
 	}
     return self;

@@ -269,7 +269,7 @@
 	int currentPlayerID=lastPlayerID%2+1;
 	float alpha = -INFINITY;
 	for(GameBoardIndex * index in [self possibleMovesForCurrentState]){
-		[self player:currentPlayerID makeMoveAtIndex:index];
+		[self player:currentPlayerID isSlotSelected:false isAI:true makeMoveAtIndex:index];
 		float a=-[self minimaxSearchForDept:depth-1];
 		if(a>alpha){
 			alpha=a;
@@ -308,7 +308,7 @@ return β
 	int currentPlayerID=lastPlayerID%2+1;
 	if (lastPlayerID!=botID) {
 		for(GameBoardIndex * index in [self possibleMovesForCurrentState]){
-			if([self player:currentPlayerID makeMoveAtIndex:index]==-1)continue;
+			if([self player:currentPlayerID isSlotSelected:false isAI:true makeMoveAtIndex:index]==-1)continue;
 			float a=[self alphaBetaPruningWithDepth:depth-1 Alpha:alpha Beta:beta botPlayer:botID];
 			[self rollBackOneMove];
 			
@@ -321,7 +321,7 @@ return β
 		return alpha;
 	}else{
 		for(GameBoardIndex * index in [self possibleMovesForCurrentState]){
-			if([self player:currentPlayerID makeMoveAtIndex:index]==-1)continue;
+			if([self player:currentPlayerID isSlotSelected:false isAI:true makeMoveAtIndex:index]==-1)continue;
 			float b=[self alphaBetaPruningWithDepth:depth-1 Alpha:alpha Beta:beta botPlayer:botID];
 			[self rollBackOneMove];
 			

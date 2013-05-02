@@ -53,16 +53,33 @@
 	return [[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] objectAtIndex:index.slot] intValue];
 }
 
--(int)player:(int)playerID makeMoveAtIndex:(GameBoardIndex *)index{
+-(int)player:(int)playerID isSlotSelected:(BOOL)slotSelected isAI:(BOOL)ai makeMoveAtIndex:(GameBoardIndex *)index{
 	// check valid move ( correct possition ,correct player turn )
-	if ([self getPlayerIDatIndex:index] != 0 || self.history.count%2+1 !=playerID) //i could comment this player turn condition for testing
-		return -1;
-	//make move
-	[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
-	[self.history addObject:index]; //add to history
-	//check for winner
-//	if([self checkForWinnerAtIndex:index WithPlayerID:playerID]==true)return 1;
-	return 0;
+    if(slotSelected){
+        //make move
+        [[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
+        [self.history addObject:index]; //add to history
+        //check for winner
+        //	if([self checkForWinnerAtIndex:index WithPlayerID:playerID]==true)return 1;
+        return 0;
+    }else{
+        if ([self getPlayerIDatIndex:index] != 0 || self.history.count%2+1 !=playerID){
+            return -1;
+        }
+        if(ai){
+            [[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
+            NSLog(@"GOT HERE FOR AI MOVE!!!",(self.history.count%2+1));
+            [self.history addObject:index];
+        }else{
+            [[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(5)];
+        }
+        //[self.history addObject:index]; //add to history
+        //check for winner
+        //	if([self checkForWinnerAtIndex:index WithPlayerID:playerID]==true)return 1;
+        return 0;
+    }
+	
+	
 }
 
 -(BOOL)checkForWinnerAtIndex:(GameBoardIndex *)index{
@@ -384,6 +401,28 @@
 	[[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(0)];
 	//remove last move
 	[self.history removeLastObject];
+}
+
+-(void)removeSelectedSlotInLayer:(int)layer Ring:(int)ring Slot:(int)slot{
+    [[[self.board objectAtIndex:layer] objectAtIndex:ring] replaceObjectAtIndex:slot withObject:@(0)];
+}
+
+-(void)removeSelectedSlotsInOtherLayers:(int)layerNum{
+    for (int i = 0; i < [self.board count]; i++){
+        NSMutableArray * layer = [self.board objectAtIndex:i];
+        if(i!=layerNum){
+            for(int k = 0; k < [layer count]; k++){
+                NSMutableArray * ring = [layer objectAtIndex:k];
+                for(int j=0;j<8;j++){
+                    if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:i Ring:k Slot:j]]==5){
+                        NSLog(@"!!!!! GOT HERE !!!!! layer=%d ring=%d slot=%d",i,k,j);
+
+                        [self removeSelectedSlotInLayer:i Ring:k Slot:j];
+                    }
+                }
+            }
+        }
+	}
 }
 
 @end
