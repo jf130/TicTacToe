@@ -12,5 +12,18 @@
 
 -(void)viewDidLoad{
 	self.textLabel.text = self.whoWin;
+    self.textLabel.textColor = self.winnerColor;
 }
+
++(void)setWinnerColor:(UIColor*)textColor{
+    [self setWinnerColor:textColor];
+}
+
++(UIColor*)getWinnerColor{
+    return [self getWinnerColor];
+}
+
+
+
+
 @end

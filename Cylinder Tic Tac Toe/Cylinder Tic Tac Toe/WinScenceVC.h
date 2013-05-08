@@ -13,7 +13,10 @@
 
 @property (strong,nonatomic) NSString * whoWin;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (nonatomic, copy) UIColor* winnerColor;
 
++(UIColor*)getWinnerColor;
++(void)setWinnerColor:(UIColor*)textColor;
 
 
 @end

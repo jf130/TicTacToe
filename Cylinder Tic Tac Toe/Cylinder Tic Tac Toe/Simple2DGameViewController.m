@@ -25,7 +25,7 @@
 @implementation Simple2DGameViewController {
     
     CylinderTicTacToeGameLogic *gameLogic;
-    
+    NSArray * colorSet;
 	NSMutableArray * layerArray;
     
 	CylinderTicTacToeGameAI * testAI;
@@ -38,13 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor], [UIColor grayColor]];
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
 	if(self.vsAI)testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
 	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
 	self.textLabel.text=@"Player 1";
+    self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
     self.isSlotSelected = false;
 	
     layerArray = [[NSMutableArray alloc] initWithCapacity:4];
@@ -97,6 +98,7 @@
             if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
                 NSLog(@"Player %d won!",self.currentPlayer);
                 self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
+                self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
                 whoWin = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
                 [self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
             }
@@ -105,11 +107,13 @@
             if (self.currentPlayer>self.numberOfPlayers)self.currentPlayer=1;
             
         self.textLabel.text = [NSString stringWithFormat:@"Player %d turn",self.currentPlayer];
+        self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
         self.isSlotSelected = false;
         
         if (self.currentPlayer==2 && self.vsAI){
             
             self.textLabel.text = @"Waiting for AI";
+            self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
             [self.view setNeedsDisplay];
             GameBoardIndex * bestMove = [testAI bestPossibleMove];
             NSLog(@"bestMove %@=(%d,%d,%d)",bestMove,bestMove.layer,bestMove.ring,bestMove.slot);
@@ -121,9 +125,12 @@
                     self.textLabel.text = @"Bot won!";
                     whoWin = @"Bot won!";
                     [self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
-                }else
+                }else{
                     self.textLabel.text = @"Player 1 turn";
+                }
+                    
                 self.currentPlayer=self.currentPlayer%2+1;
+                self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
             }else{
                 NSLog(@"Bot give up!");
                 self.textLabel.text = @"Bot give up!";
@@ -158,6 +165,7 @@
         }
         else{
             self.textLabel.text = [NSString stringWithFormat:@"Player %d wrong move!",self.currentPlayer];
+            self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
             return false;
         }
     }
@@ -206,6 +214,7 @@
 	if ([segue.identifier isEqualToString:@"gotoWinScenceVC"]) {
 		WinScenceVC * destVC = segue.destinationViewController;
 		NSLog(@"whoWin=%@",whoWin);
+        [destVC setWinnerColor:[colorSet objectAtIndex:self.currentPlayer]];
 		destVC.whoWin = whoWin;
 	}
 }
