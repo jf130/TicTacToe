@@ -44,13 +44,13 @@
 	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
-	self.textLabel.text=@"Player 1";
+	self.textLabel.text=@"Player 1 turn";
     self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
     self.isSlotSelected = false;
 	
     layerArray = [[NSMutableArray alloc] initWithCapacity:4];
     for (int i=0; i<4; i++) {
-		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(30, 1+112*i, 250, 250)];
+		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(35, 1+112*i, 250, 250)];
 		layerView.delegate = self;
         layerView.layerNumber = i;
 		[layerArray addObject:layerView];
