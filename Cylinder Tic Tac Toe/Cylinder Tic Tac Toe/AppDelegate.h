@@ -8,8 +8,36 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WebSocketChannelDelegate <NSObject>
+
+
+/** Channel Open
+start receiving message from a channel
+*/
+@required
+-(void)channelOpen;
+
+/**	Receive a message from channel
+*/
+@required
+-(void)receiveMessage:(NSString*)mes;
+
+/**	Receive an error from channel
+*/
+-(void)receiveError:(NSString*)error;
+
+/** Channel Close
+channel stop working from now
+*/
+@required
+-(void)channelClose;
+
+@end
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property id<WebSocketChannelDelegate> webSocketlDelegate;
 
 @end

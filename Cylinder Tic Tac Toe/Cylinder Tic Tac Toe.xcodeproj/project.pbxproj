@@ -83,6 +83,7 @@
 		ACF8433217011DA1001B8DCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B19F1C4F172A8F6D00C42142 /* WinScenceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScenceVC.h; sourceTree = "<group>"; };
 		B19F1C50172A8F6D00C42142 /* WinScenceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScenceVC.m; sourceTree = "<group>"; };
+		B1B35D3F173D75F300BB657C /* Cylinder Tic Tac Toe copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Cylinder Tic Tac Toe copy-Info.plist"; path = "/Users/TVA/Dropbox/MyLibrary/Xcode/TicTacToe/Cylinder Tic Tac Toe/Cylinder Tic Tac Toe copy-Info.plist"; sourceTree = "<absolute>"; };
 		B1BFB431171941D900FFB502 /* CylinderTicTacToeGameAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameAI.h; sourceTree = "<group>"; };
 		B1BFB432171941D900FFB502 /* CylinderTicTacToeGameAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylinderTicTacToeGameAI.m; sourceTree = "<group>"; };
 		B1C756C717115FF900EF4D46 /* CylinderTicTacToeGameLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylinderTicTacToeGameLogic.h; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 				ACF8431C17011DA1001B8DCB /* Cylinder Tic Tac Toe */,
 				ACF8431517011DA1001B8DCB /* Frameworks */,
 				ACF8431317011DA1001B8DCB /* Products */,
+				B1B35D3F173D75F300BB657C /* Cylinder Tic Tac Toe copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

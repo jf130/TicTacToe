@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CylinderTicTacToeGameLogic.h"
 #import "Simple2DLayer.h"
+#import "AppDelegate.h"
 
-
-@interface Simple2DGameViewController : UIViewController <LayerDataDelegate>
+@interface Simple2DGameViewController : UIViewController <LayerDataDelegate,WebSocketChannelDelegate>
 
 
 @property(nonatomic) int currentPlayer;
@@ -19,5 +19,9 @@
 @property(nonatomic) BOOL vsAI;
 @property(nonatomic) BOOL isSlotSelected;
 @property(nonatomic) uint selectedLayer,selectedRing,selectedSlot;
+
+
+@property(nonatomic) BOOL vsPlayerOnline;
+@property(nonatomic) int myPlayerID;
 
 @end

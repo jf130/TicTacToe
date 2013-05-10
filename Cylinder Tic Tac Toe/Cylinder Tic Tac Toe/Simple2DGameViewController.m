@@ -15,12 +15,14 @@
 
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 #define RadiansToDegrees(x) ((x) * 180 / M_PI)
+#define timeInterval 10
 
 @interface Simple2DGameViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
+
 
 @implementation Simple2DGameViewController {
     
@@ -31,9 +33,14 @@
 	CylinderTicTacToeGameAI * testAI;
 	
 	NSString * whoWin;
+	
+	UIWebView * backgroundWebView;
+	
+	int timeCount;
+	NSString * gamekey;
 }
 
-
+static NSString * serverURL = @"http://localhost:8080";
 
 - (void)viewDidLoad
 {
@@ -41,6 +48,12 @@
 	colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor], [UIColor grayColor]];
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
 	if(self.vsAI)testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
+	else{ 
+		self.vsPlayerOnline=true;//test purpose
+		self.myPlayerID=1;
+		gamekey=[NSString stringWithFormat:@"test"];
+	}
+	
 	
 	self.numberOfPlayers = 2;
 	self.currentPlayer = 1;
@@ -48,7 +61,21 @@
     self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
     self.isSlotSelected = false;
 	
-    layerArray = [[NSMutableArray alloc] initWithCapacity:4];
+    
+	if(self.vsPlayerOnline) {
+		backgroundWebView = [[UIWebView alloc]initWithFrame:CGRectZero];
+		[backgroundWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@",serverURL,gamekey]]]];
+		AppDelegate * app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+		app.webSocketlDelegate = self; //set delegate for websocket connection
+		timeCount=0;
+		[NSTimer scheduledTimerWithTimeInterval:timeInterval
+										 target:self
+									   selector:@selector(updateCounter:)
+									   userInfo:nil
+										repeats:YES];
+	}
+	
+	layerArray = [[NSMutableArray alloc] initWithCapacity:4];
     for (int i=0; i<4; i++) {
 		Simple2DLayer * layerView = [[Simple2DLayer alloc]initWithFrame:CGRectMake(35, 1+112*i, 250, 250)];
 		layerView.delegate = self;
@@ -83,15 +110,17 @@
     [gameLogic removeSelectedSlotsInOtherLayers:layer];
     for (Simple2DLayer * layerView in layerArray) [layerView setNeedsDisplay];
     
-    
+    if (self.vsPlayerOnline && self.myPlayerID!=self.currentPlayer) {
+		//user is playing online and this is not user turn to play
+		return false;
+	}
+	
     if(self.isSlotSelected && layer == self.selectedLayer
                            && ring == self.selectedRing
                            && slot == self.selectedSlot
        ){
         int result = [gameLogic player:self.currentPlayer isSlotSelected:self.isSlotSelected isAI:false makeMoveAtIndex:[GameBoardIndex indexForLayer:layer Ring:ring Slot:slot]];
         NSLog(@"player=%d , result=%d",self.currentPlayer,result);
-        
-        [testAI copyGameState];
 		
         [self redrawBoard:layer];
             
@@ -100,6 +129,7 @@
                 self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
                 self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
                 whoWin = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
+				if (self.vsPlayerOnline) whoWin = [NSString stringWithFormat:@"%@\nYou Won!",whoWin];
                 [self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
             }
             
@@ -110,8 +140,12 @@
         self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
         self.isSlotSelected = false;
         
+		if (self.vsPlayerOnline) { //playing online, send message to opponent about use move
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=%d%d%d%d",serverURL,gamekey,self.myPlayerID,layer,ring,slot]] encoding:NSUTF8StringEncoding error:nil];
+			timeCount=0;
+		}
         if (self.currentPlayer==2 && self.vsAI){
-            
+            [testAI copyGameState];
             self.textLabel.text = @"Waiting for AI";
             self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
             [self.view setNeedsDisplay];
@@ -129,7 +163,9 @@
                     self.textLabel.text = @"Player 1 turn";
                 }
                     
-                self.currentPlayer=self.currentPlayer%2+1;
+                self.currentPlayer+=1;
+				if (self.currentPlayer>self.numberOfPlayers)self.currentPlayer=1;
+				
                 self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
            		//bring the layer that bot make move to front, will rearrange when user try to move
 				[self.view bringSubviewToFront: [layerArray objectAtIndex:bestMove.layer]];
@@ -228,6 +264,76 @@
         [destVC setWinnerColor:[colorSet objectAtIndex:self.currentPlayer]];
 		destVC.whoWin = whoWin;
 	}
+}
+
+#pragma mark - Counter
+- (void)updateCounter:(NSTimer *)theTimer {
+	timeCount+=timeInterval;
+	if(timeCount>=20 && self.currentPlayer!=self.myPlayerID){
+		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=PING%d",serverURL,gamekey,[self getOpponentID]]] encoding:NSUTF8StringEncoding error:nil];
+		timeCount=0;
+	}
+}
+
+-(int)getOpponentID{
+	return self.myPlayerID%2+1;
+}
+
+#pragma mark - Websocket delegate
+-(void)receiveMessage:(NSString *)mes{
+	//pid,layer,ring,slot
+	if([mes isEqualToString:[NSString stringWithFormat:@"PING%d",self.myPlayerID]]){
+		if(self.currentPlayer==self.myPlayerID){//wait me make a move
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=WAIT%d",serverURL,gamekey,self.myPlayerID]] encoding:NSUTF8StringEncoding error:nil];
+		}else{//he didn't get my lastmove, resend it
+			GameBoardIndex * lastMove = gameLogic.history.lastObject;
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=%d%d%d%d",serverURL,gamekey,self.myPlayerID,lastMove.layer,lastMove.ring,lastMove.slot]] encoding:NSUTF8StringEncoding error:nil];
+		}
+	}else if ([mes isEqualToString:[NSString stringWithFormat:@"WAIT%d",[self getOpponentID]]]){
+		NSLog(@"Your opponent is thinking!");
+	}
+	else if(mes.length==4){
+		int pid=[[mes substringWithRange:NSMakeRange(0, 1)] intValue];
+		if(pid==0)return;//not correct message
+		
+		int layer=[[mes substringWithRange:NSMakeRange(1, 1)] intValue];
+		int ring=[[mes substringWithRange:NSMakeRange(2, 1)] intValue];
+		int slot=[[mes substringWithRange:NSMakeRange(3, 1)] intValue];
+		
+		NSLog(@"pid=%d,layer=%d,ring=%d,slot=%d",pid,layer,ring,slot);
+		if(pid == self.currentPlayer && pid !=self.myPlayerID){ //opponent move
+			GameBoardIndex * opponentMove = [GameBoardIndex indexForLayer:layer Ring:ring Slot:slot];
+			[gameLogic player:self.currentPlayer isSlotSelected:true isAI:true makeMoveAtIndex:[GameBoardIndex indexForLayer:opponentMove.layer Ring:opponentMove.ring Slot:opponentMove.slot]];
+			[self redrawBoard:opponentMove.layer];
+			if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
+				NSLog(@"You lost!");
+				self.textLabel.text = @"You lost!";
+				whoWin = @"You lost";
+				[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
+			}else{
+				self.textLabel.text = @"Your turn";
+			}
+			self.currentPlayer+=1;
+			if (self.currentPlayer>self.numberOfPlayers)self.currentPlayer=1;
+			
+			self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
+			//bring the layer that opponent make move to front, will rearrange when user try to move
+			[self.view bringSubviewToFront: [layerArray objectAtIndex:opponentMove.layer]];
+		}
+	}
+}
+
+-(void)receiveError:(NSString *)error{
+	NSLog(@"WebSocket error:%@",error);
+}
+
+-(void)channelOpen{
+	NSLog(@"WebSocket Channel Openned!");
+}
+
+-(void)channelClose{
+	whoWin = @"Connection Lost";
+	[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:nil];
 }
 
 @end
