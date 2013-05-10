@@ -68,7 +68,7 @@
         }
         if(ai){
             [[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(playerID)];
-            NSLog(@"GOT HERE FOR AI MOVE!!!",(self.history.count%2+1));
+            //NSLog(@"GOT HERE FOR AI MOVE!!!",(self.history.count%2+1));
             [self.history addObject:index];
         }else{
             [[[self.board objectAtIndex:index.layer] objectAtIndex:index.ring] replaceObjectAtIndex:index.slot withObject:@(5)];
@@ -412,7 +412,7 @@
         NSMutableArray * layer = [self.board objectAtIndex:i];
         if(i!=layerNum){
             for(int k = 0; k < [layer count]; k++){
-                NSMutableArray * ring = [layer objectAtIndex:k];
+                //NSMutableArray * ring = [layer objectAtIndex:k];
                 for(int j=0;j<8;j++){
                     if ([self getPlayerIDatIndex:[GameBoardIndex indexForLayer:i Ring:k Slot:j]]==5){
                         NSLog(@"!!!!! GOT HERE !!!!! layer=%d ring=%d slot=%d",i,k,j);

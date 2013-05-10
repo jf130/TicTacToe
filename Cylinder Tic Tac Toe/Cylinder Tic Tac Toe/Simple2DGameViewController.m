@@ -131,7 +131,10 @@
                     
                 self.currentPlayer=self.currentPlayer%2+1;
                 self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
-            }else{
+           		//bring the layer that bot make move to front, will rearrange when user try to move
+				[self.view bringSubviewToFront: [layerArray objectAtIndex:bestMove.layer]];
+				
+			}else{
                 NSLog(@"Bot give up!");
                 self.textLabel.text = @"Bot give up!";
                 whoWin = @"You won!\nBot give up!";
@@ -144,6 +147,8 @@
                     
     }
     else{
+		//rearrange layer to normal
+		[self arrangeLayer];
         if(self.isSlotSelected){
             [self removeSelectedSlotInLayer];
         }
@@ -187,10 +192,16 @@
 	}
 }
 
+-(void)arrangeLayer{
+	for (Simple2DLayer * layerView in layerArray)[self.view bringSubviewToFront:layerView];	
+}
+
 #pragma mark - touch, gesture
 
 - (IBAction)swipeAction:(UISwipeGestureRecognizer *)sender {
 //	NSLog(@"Swipe!");
+	//rearrange layer
+	[self arrangeLayer];
 	CGFloat rotateAngle;
 	if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
 		rotateAngle=90;
