@@ -223,11 +223,12 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="vNY-sR-6Yv">
-                                <rect key="frame" x="80" y="145" width="161" height="44"/>
+                                <rect key="frame" x="60" y="145" width="200" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Human"/>
                                     <segment title="AI"/>
+                                    <segment title="Online"/>
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A5G-Nb-lLS">
@@ -403,7 +404,6 @@
         <class className="NewGameOptionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGameOptionsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="returnToNewGameOptionVC:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="segmentedControlView" candidateClass="UISegmentedControl"/>
             </relationships>
@@ -411,12 +411,8 @@
         <class className="Simple2DGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Simple2DGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="swipeAction:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
             </relationships>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
@@ -438,6 +434,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="g1L-PR-2N6"/>
+        <segue reference="yFs-hg-9lE"/>
     </inferredMetricsTieBreakers>
 </document>

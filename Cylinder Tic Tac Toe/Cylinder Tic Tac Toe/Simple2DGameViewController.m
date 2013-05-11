@@ -36,11 +36,14 @@
 	
 	UIWebView * backgroundWebView;
 	
+	bool waitForOpponent;
+	
 	int timeCount;
 	NSString * gamekey;
 }
 
-static NSString * serverURL = @"http://localhost:8080";
+//static NSString * serverURL = @"http://localhost:8080";
+static NSString * serverURL = @"http://social-file-server.appspot.com";
 
 - (void)viewDidLoad
 {
@@ -48,11 +51,8 @@ static NSString * serverURL = @"http://localhost:8080";
 	colorSet=@[[UIColor whiteColor],[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor greenColor], [UIColor grayColor]];
 	gameLogic = [[CylinderTicTacToeGameLogic alloc]init];
 	if(self.vsAI)testAI = [[CylinderTicTacToeGameAI alloc]initForGameLogic:gameLogic WithIntelligent:2];
-	else{ 
-		self.vsPlayerOnline=true;//test purpose
-		self.myPlayerID=1;
-		gamekey=[NSString stringWithFormat:@"test"];
-	}
+	
+	
 	
 	
 	self.numberOfPlayers = 2;
@@ -63,6 +63,9 @@ static NSString * serverURL = @"http://localhost:8080";
 	
     
 	if(self.vsPlayerOnline) {
+		self.myPlayerID=0;
+		gamekey=@"";
+		waitForOpponent=true;
 		backgroundWebView = [[UIWebView alloc]initWithFrame:CGRectZero];
 		[backgroundWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@",serverURL,gamekey]]]];
 		AppDelegate * app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -73,6 +76,7 @@ static NSString * serverURL = @"http://localhost:8080";
 									   selector:@selector(updateCounter:)
 									   userInfo:nil
 										repeats:YES];
+		self.textLabel.text=@"Wait Opponent";
 	}
 	
 	layerArray = [[NSMutableArray alloc] initWithCapacity:4];
@@ -269,7 +273,7 @@ static NSString * serverURL = @"http://localhost:8080";
 #pragma mark - Counter
 - (void)updateCounter:(NSTimer *)theTimer {
 	timeCount+=timeInterval;
-	if(timeCount>=20 && self.currentPlayer!=self.myPlayerID){
+	if(timeCount>=20 && self.currentPlayer!=self.myPlayerID && !waitForOpponent){
 		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=PING%d",serverURL,gamekey,[self getOpponentID]]] encoding:NSUTF8StringEncoding error:nil];
 		timeCount=0;
 	}
@@ -278,6 +282,14 @@ static NSString * serverURL = @"http://localhost:8080";
 -(int)getOpponentID{
 	return self.myPlayerID%2+1;
 }
+
+-(NSString*)getMyRealGamekey{
+	int len = [gamekey length]; //gamekey is the key token of opponent
+    NSMutableString *reverse = [[NSMutableString alloc] initWithCapacity:len];
+    for(int i=len-1;i>=0;i--)[reverse appendString:[NSString stringWithFormat:@"%c",[gamekey characterAtIndex:i]]];
+	return reverse;
+}
+
 
 #pragma mark - Websocket delegate
 -(void)receiveMessage:(NSString *)mes{
@@ -291,6 +303,29 @@ static NSString * serverURL = @"http://localhost:8080";
 		}
 	}else if ([mes isEqualToString:[NSString stringWithFormat:@"WAIT%d",[self getOpponentID]]]){
 		NSLog(@"Your opponent is thinking!");
+	}
+	else if (mes.length>3 && [[mes substringToIndex:3] isEqualToString:@"OK:"]){
+		
+		if(self.myPlayerID==0){
+			gamekey = [mes substringFromIndex:3];
+			self.myPlayerID=2;//this player join the game
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=OK:%@",serverURL,gamekey,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];		
+			self.textLabel.text=@"Player 1 turn";
+		}else{
+			if([gamekey isEqualToString:[mes substringFromIndex:3]])NSLog(@"Handshake OK!");
+			else NSLog(@"Invalid gamekey during Handshake!!!");
+			self.textLabel.text=@"Your turn";
+		}
+		self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
+		waitForOpponent=false;
+	}
+	else if (mes.length>5 && [[mes substringToIndex:5] isEqualToString:@"JOIN:"]){
+		gamekey = [mes substringFromIndex:5];
+		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=OK:%@",serverURL,gamekey,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];
+		//waitForOpponent=false;
+		self.myPlayerID=1;//this player create the game
+		self.textLabel.text=@"Send invite";
+		self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
 	}
 	else if(mes.length==4){
 		int pid=[[mes substringWithRange:NSMakeRange(0, 1)] intValue];
