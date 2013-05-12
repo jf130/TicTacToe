@@ -42,7 +42,11 @@
 	
 }
 -(IBAction)returnToNewGameOptionVC:(UIStoryboardSegue*)segue{
-	
+	NSLog(@"source=%@",segue.sourceViewController);
+	if([segue.sourceViewController isKindOfClass:[Simple2DGameViewController class]]){
+		Simple2DGameViewController * sourceVC= segue.sourceViewController;
+		if(sourceVC.vsPlayerOnline)[sourceVC sendQuitGameSignal];
+	}
 }
 
 @end

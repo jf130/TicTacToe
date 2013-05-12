@@ -24,4 +24,5 @@
 @property(nonatomic) BOOL vsPlayerOnline;
 @property(nonatomic) int myPlayerID;
 
+-(void)sendQuitGameSignal;
 @end

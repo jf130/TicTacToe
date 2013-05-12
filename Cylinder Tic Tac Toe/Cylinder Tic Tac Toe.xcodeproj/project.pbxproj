@@ -459,12 +459,14 @@
 		ACF8433717011DA1001B8DCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Anh (9N2ME7W4PZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: V.Anh Tran (6JUUJQPM3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: V.Anh Tran (6JUUJQPM3W)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cylinder Tic Tac Toe/Cylinder Tic Tac Toe-Prefix.pch";
 				INFOPLIST_FILE = "Cylinder Tic Tac Toe/Cylinder Tic Tac Toe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AEAE5672-38B3-4848-AB98-40DDB5664852";
+				PROVISIONING_PROFILE = "418D5435-0A9F-4AF6-AC3E-E0759F595F45";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "418D5435-0A9F-4AF6-AC3E-E0759F595F45";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -472,13 +474,14 @@
 		ACF8433817011DA1001B8DCB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tran Anh (9N2ME7W4PZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: V.Anh Tran (6JUUJQPM3W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: V.Anh Tran (6JUUJQPM3W)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cylinder Tic Tac Toe/Cylinder Tic Tac Toe-Prefix.pch";
 				INFOPLIST_FILE = "Cylinder Tic Tac Toe/Cylinder Tic Tac Toe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AEAE5672-38B3-4848-AB98-40DDB5664852";
+				PROVISIONING_PROFILE = "418D5435-0A9F-4AF6-AC3E-E0759F595F45";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "418D5435-0A9F-4AF6-AC3E-E0759F595F45";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

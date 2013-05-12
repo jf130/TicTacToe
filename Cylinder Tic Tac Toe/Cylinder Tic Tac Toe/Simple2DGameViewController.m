@@ -15,7 +15,7 @@
 
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 #define RadiansToDegrees(x) ((x) * 180 / M_PI)
-#define timeInterval 10
+#define timeInterval 1
 
 @interface Simple2DGameViewController ()
 
@@ -40,6 +40,8 @@
 	
 	int timeCount;
 	NSString * gamekey;
+	
+	NSTimer * timer;
 }
 
 //static NSString * serverURL = @"http://localhost:8080";
@@ -70,13 +72,8 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 		[backgroundWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@",serverURL,gamekey]]]];
 		AppDelegate * app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 		app.webSocketlDelegate = self; //set delegate for websocket connection
-		timeCount=0;
-		[NSTimer scheduledTimerWithTimeInterval:timeInterval
-										 target:self
-									   selector:@selector(updateCounter:)
-									   userInfo:nil
-										repeats:YES];
-		self.textLabel.text=@"Wait Opponent";
+		
+		self.textLabel.text=@"Init connection";
 	}
 	
 	layerArray = [[NSMutableArray alloc] initWithCapacity:4];
@@ -133,7 +130,7 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
                 self.textLabel.text = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
                 self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
                 whoWin = [NSString stringWithFormat:@"Player %d won",self.currentPlayer];
-				if (self.vsPlayerOnline) whoWin = [NSString stringWithFormat:@"%@\nYou Won!",whoWin];
+				if (self.vsPlayerOnline) whoWin = @"You Won!";
                 [self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
             }
             
@@ -263,6 +260,7 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 	if ([segue.identifier isEqualToString:@"gotoWinScenceVC"]) {
+		[timer invalidate];
 		WinScenceVC * destVC = segue.destinationViewController;
 		NSLog(@"whoWin=%@",whoWin);
         [destVC setWinnerColor:[colorSet objectAtIndex:self.currentPlayer]];
@@ -273,9 +271,27 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 #pragma mark - Counter
 - (void)updateCounter:(NSTimer *)theTimer {
 	timeCount+=timeInterval;
-	if(timeCount>=20 && self.currentPlayer!=self.myPlayerID && !waitForOpponent){
-		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=PING%d",serverURL,gamekey,[self getOpponentID]]] encoding:NSUTF8StringEncoding error:nil];
-		timeCount=0;
+	
+	if(waitForOpponent){
+		if (timeCount>120) {
+			whoWin = @"Time out!";
+			[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
+		}
+		self.textLabel.text = [NSString stringWithFormat:@"Wait Oppt %d",120-timeCount];
+	}else{
+		if(timeCount%20==0 && self.currentPlayer!=self.myPlayerID){
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&cache=no&mes=PING",serverURL,gamekey]] encoding:NSUTF8StringEncoding error:nil];
+		}
+		
+	}
+	//polling
+	if(timeCount%30==0){
+		NSLog(@"Polling for message...");
+		NSString *mes=[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&cache=get",serverURL,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];
+		NSLog(@"Result polling=%@",mes);
+		if(mes){
+			[self receiveMessage:mes];
+		}
 	}
 }
 
@@ -294,46 +310,53 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 #pragma mark - Websocket delegate
 -(void)receiveMessage:(NSString *)mes{
 	//pid,layer,ring,slot
-	if([mes isEqualToString:[NSString stringWithFormat:@"PING%d",self.myPlayerID]]){
+	if([mes isEqualToString:@"PING"]){
+		NSLog(@"You has been PING");
 		if(self.currentPlayer==self.myPlayerID){//wait me make a move
-			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=WAIT%d",serverURL,gamekey,self.myPlayerID]] encoding:NSUTF8StringEncoding error:nil];
+			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&cache=no&mes=WAIT",serverURL,gamekey]] encoding:NSUTF8StringEncoding error:nil];
 		}else{//he didn't get my lastmove, resend it
 			GameBoardIndex * lastMove = gameLogic.history.lastObject;
 			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=%d%d%d%d",serverURL,gamekey,self.myPlayerID,lastMove.layer,lastMove.ring,lastMove.slot]] encoding:NSUTF8StringEncoding error:nil];
 		}
-	}else if ([mes isEqualToString:[NSString stringWithFormat:@"WAIT%d",[self getOpponentID]]]){
+	}else if ([mes isEqualToString:@"WAIT"]){
 		NSLog(@"Your opponent is thinking!");
+	}else if ([mes isEqualToString:@"QUIT"]){
+		NSLog(@"Opponent quit!");
+		whoWin = @"Opponent quit";
+		[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 	}
 	else if (mes.length>3 && [[mes substringToIndex:3] isEqualToString:@"OK:"]){
 		
 		if(self.myPlayerID==0){
 			gamekey = [mes substringFromIndex:3];
-			self.myPlayerID=2;//this player join the game
-			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=OK:%@",serverURL,gamekey,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];		
-			self.textLabel.text=@"Player 1 turn";
-		}else{
-			if([gamekey isEqualToString:[mes substringFromIndex:3]])NSLog(@"Handshake OK!");
-			else NSLog(@"Invalid gamekey during Handshake!!!");
+			self.myPlayerID=1;//this player create the game that other join
+//			[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=OK:%@",serverURL,gamekey,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];
 			self.textLabel.text=@"Your turn";
+			self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
+			waitForOpponent=false;
 		}
-		self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
-		waitForOpponent=false;
+//		else{
+//			if ([gamekey isEqualToString:[mes substringFromIndex:3]])NSLog(@"Handshake OK!");
+//			else NSLog(@"Invalid gamekey while handshaking!");
+//			self.textLabel.text=@"Player 1 turn";
+//		}
+		
 	}
 	else if (mes.length>5 && [[mes substringToIndex:5] isEqualToString:@"JOIN:"]){
 		gamekey = [mes substringFromIndex:5];
 		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=OK:%@",serverURL,gamekey,[self getMyRealGamekey]]] encoding:NSUTF8StringEncoding error:nil];
-		//waitForOpponent=false;
-		self.myPlayerID=1;//this player create the game
-		self.textLabel.text=@"Send invite";
+		self.myPlayerID=2;//this player join the game that other create
+		self.textLabel.text=@"Player 1 turn";;
 		self.textLabel.textColor = [colorSet objectAtIndex:self.currentPlayer];
+		waitForOpponent=false;
 	}
 	else if(mes.length==4){
 		int pid=[[mes substringWithRange:NSMakeRange(0, 1)] intValue];
 		if(pid==0)return;//not correct message
 		
-		int layer=[[mes substringWithRange:NSMakeRange(1, 1)] intValue];
-		int ring=[[mes substringWithRange:NSMakeRange(2, 1)] intValue];
-		int slot=[[mes substringWithRange:NSMakeRange(3, 1)] intValue];
+		int layer=[[mes substringWithRange:NSMakeRange(1, 1)] intValue]%4;
+		int ring=[[mes substringWithRange:NSMakeRange(2, 1)] intValue]%4;
+		int slot=[[mes substringWithRange:NSMakeRange(3, 1)] intValue]%8;
 		
 		NSLog(@"pid=%d,layer=%d,ring=%d,slot=%d",pid,layer,ring,slot);
 		if(pid == self.currentPlayer && pid !=self.myPlayerID){ //opponent move
@@ -342,7 +365,6 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 			[self redrawBoard:opponentMove.layer];
 			if([gameLogic checkForWinnerAtIndex:gameLogic.history.lastObject WithPlayerID:self.currentPlayer]){
 				NSLog(@"You lost!");
-				self.textLabel.text = @"You lost!";
 				whoWin = @"You lost";
 				[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:Nil];
 			}else{
@@ -360,15 +382,32 @@ static NSString * serverURL = @"http://social-file-server.appspot.com";
 
 -(void)receiveError:(NSString *)error{
 	NSLog(@"WebSocket error:%@",error);
+	UIAlertView * allert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"WebSocket error" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+	[allert show];
 }
 
 -(void)channelOpen{
 	NSLog(@"WebSocket Channel Openned!");
+	self.textLabel.text=@"Wait Oppt";
+	timeCount=0;
+	timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval
+									 target:self
+								   selector:@selector(updateCounter:)
+								   userInfo:nil
+									repeats:YES];
 }
 
 -(void)channelClose{
 	whoWin = @"Connection Lost";
 	[self performSegueWithIdentifier:@"gotoWinScenceVC" sender:nil];
+}
+
+-(void)sendQuitGameSignal{
+	[timer invalidate];
+	if (!waitForOpponent) {
+		[NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/test/gamechannel?gamekey=%@&mes=QUIT",serverURL,gamekey]] encoding:NSUTF8StringEncoding error:nil];
+		NSLog(@"Quit signal sent!");
+	}
 }
 
 @end

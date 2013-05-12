@@ -48,24 +48,24 @@
 	NSLog(@"Handle url: %@",fullURL);
 	if([[fullURL substringToIndex:11] isEqualToString:@"game://OPEN"]){
 		NSLog(@"OPEN");
-		[self.webSocketlDelegate channelOpen];
+		if(self.webSocketlDelegate!=Nil)[self.webSocketlDelegate channelOpen];
 		return YES;
 	}
 	if([[fullURL substringToIndex:11] isEqualToString:@"game://MES:"]){
 		NSString * mes = [fullURL substringFromIndex:11];
 		NSLog(@"mes=%@",mes);
-		[self.webSocketlDelegate receiveMessage:mes];
+		if(self.webSocketlDelegate!=Nil)[self.webSocketlDelegate receiveMessage:mes];
 		return YES;
 	}
 	if([[fullURL substringToIndex:13] isEqualToString:@"game://ERROR:"]){
 		NSString * error = [fullURL substringFromIndex:13];
 		NSLog(@"error=%@",error);
-		[self.webSocketlDelegate receiveError:error];
+		if(self.webSocketlDelegate!=Nil)[self.webSocketlDelegate receiveError:error];
 		return YES;
 	}
 	if([[fullURL substringToIndex:12] isEqualToString:@"game://CLOSE"]){
 		NSLog(@"CLOSE");
-		[self.webSocketlDelegate channelClose];
+		if(self.webSocketlDelegate!=Nil)[self.webSocketlDelegate channelClose];
 		return YES;
 	}
 	NSLog(@"Handle failed!");
