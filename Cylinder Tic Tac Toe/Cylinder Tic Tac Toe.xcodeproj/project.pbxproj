@@ -14,6 +14,10 @@
 		AC3DD809173ABA4700C8931C /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3DD808173ABA4600C8931C /* CreditsViewController.m */; };
 		ACAD19BD17256793002B522B /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAD19BC17256793002B522B /* Title.png */; };
 		ACC25B5817418850004A837F /* game_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACC25B5717418850004A837F /* game_background.jpg */; };
+		ACC25B5E1741B614004A837F /* game_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC25B5D1741B614004A837F /* game_icon.png */; };
+		ACC25B601741B698004A837F /* game_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC25B5F1741B698004A837F /* game_icon.png */; };
+		ACC25B621741B6F0004A837F /* game_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC25B611741B6F0004A837F /* game_icon_large.png */; };
+		ACC25B641741B6FD004A837F /* game_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC25B631741B6FD004A837F /* game_icon_large.png */; };
 		ACF35C6C1714BF0900B008D3 /* Simple2DGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */; };
 		ACF8431717011DA1001B8DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431617011DA1001B8DCB /* UIKit.framework */; };
 		ACF8431917011DA1001B8DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF8431817011DA1001B8DCB /* Foundation.framework */; };
@@ -63,6 +67,10 @@
 		AC3DD808173ABA4600C8931C /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		ACAD19BC17256793002B522B /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Title.png; path = color_buttons/Title.png; sourceTree = "<group>"; };
 		ACC25B5717418850004A837F /* game_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = game_background.jpg; sourceTree = "<group>"; };
+		ACC25B5D1741B614004A837F /* game_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_icon.png; sourceTree = "<group>"; };
+		ACC25B5F1741B698004A837F /* game_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_icon.png; sourceTree = "<group>"; };
+		ACC25B611741B6F0004A837F /* game_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_icon_large.png; path = ../../../../../Downloads/game_icon_large.png; sourceTree = "<group>"; };
+		ACC25B631741B6FD004A837F /* game_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_icon_large.png; sourceTree = "<group>"; };
 		ACF35C691714BF0900B008D3 /* Simple2DGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple2DGameViewController.h; sourceTree = "<group>"; };
 		ACF35C6A1714BF0900B008D3 /* Simple2DGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple2DGameViewController.m; sourceTree = "<group>"; };
 		ACF8431217011DA1001B8DCB /* Cylinder Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cylinder Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +148,8 @@
 		ACAD198F17256663002B522B /* game_images */ = {
 			isa = PBXGroup;
 			children = (
+				ACC25B611741B6F0004A837F /* game_icon_large.png */,
+				ACC25B5D1741B614004A837F /* game_icon.png */,
 				ACC25B5717418850004A837F /* game_background.jpg */,
 				AC3DD7DB172AE2DC00C8931C /* Menu.png */,
 				ACAD19BC17256793002B522B /* Title.png */,
@@ -150,6 +160,8 @@
 		ACF8430717011DA1001B8DCB = {
 			isa = PBXGroup;
 			children = (
+				ACC25B631741B6FD004A837F /* game_icon_large.png */,
+				ACC25B5F1741B698004A837F /* game_icon.png */,
 				ACF8431C17011DA1001B8DCB /* Cylinder Tic Tac Toe */,
 				ACF8431517011DA1001B8DCB /* Frameworks */,
 				ACF8431317011DA1001B8DCB /* Products */,
@@ -353,6 +365,10 @@
 				AC3DD805173AB9EA00C8931C /* credits.pdf in Resources */,
 				AC3DD806173AB9EA00C8931C /* howToPlay.pdf in Resources */,
 				ACC25B5817418850004A837F /* game_background.jpg in Resources */,
+				ACC25B5E1741B614004A837F /* game_icon.png in Resources */,
+				ACC25B601741B698004A837F /* game_icon.png in Resources */,
+				ACC25B621741B6F0004A837F /* game_icon_large.png in Resources */,
+				ACC25B641741B6FD004A837F /* game_icon_large.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
